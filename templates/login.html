@@ -1,0 +1,233 @@
+
+<!doctype html>
+
+
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Login</title>
+  </head>
+  
+    <style>
+        html,
+body {
+  height: 100%;
+}
+
+#inputEmail{
+  border-radius: 5px;
+}
+body {
+   background-image:  url(https://images.unsplash.com/photo-1601039913996-d74e58095333?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1462&q=80)  ;
+
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 0px;
+  padding-bottom: 40px;
+  background-color: lightblue;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.mb-4{
+  border-radius: 5px;
+}
+.form-signin .form-control {
+  margin : 16px 3px;
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-radius: 5px;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-radius: 5px;
+}
+
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      /* Navbar Components start*/ 
+    navbar{
+      background-color: none;
+    } 
+    #navbarSupportedContent {
+      color: white;
+      margin-left: 360px;
+    } 
+    li a{
+      color: white;
+      margin-right: 20px;
+      text-decoration: none;
+
+    }
+    .navbar-brand{
+      color: aliceblue;
+      font-size:30px;
+    }
+    nav li a:hover {
+     border-bottom: 2px solid white;
+     color:white;
+     
+
+    }
+     /* Navbar Components End*/ 
+     div.footer{
+      padding:8% 0% 5% 0%;
+      background-color:#28334aff;
+      overflow-x: hidden;
+      color:blanchedalmond;
+    }
+    </style>
+    <!-- Custom styles for this template -->
+   
+  </head>
+  <body>
+    <!-- Navigation bar starts -->
+    <nav class="navbar navbar-expand-lg  mx-auto ">
+      <a class="navbar-brand" href="#"> Hunters</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto ">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About Us</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link " href="/services">Services</a>
+            
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact">Contact Us</a>
+          </li>
+        
+        </ul>
+        
+      </nav>
+      <!-- Navigation bar ends -->
+  <div class="text-center">
+ <form class="form-signin" method= "POST" action="/login">
+  {% csrf_token %}
+  <img class="mb-4" src="https://cdn.freebiesupply.com/logos/large/2x/employee-savings-1-logo-png-transparent.png" alt="logo" width="70" height="70">
+  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+  <label for="inputEmail" class="sr-only">Username</label>
+  <input type="text" id="inputEmail" class="form-control" name="username" placeholder="Username" required autofocus>
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" value="remember-me"> Remember me
+    </label>
+
+  </div>
+  <div class="mb-0 mt-0 " >
+    {% if messages %}
+  {% for message in messages %}
+    
+    <strong  id="alert" >{{ message }}</strong>
+   
+  {% endfor %}
+  {% endif %}
+  </div>
+  <button class="btn btn-lg btn-warning btn-block" type="submit">Sign in</button>
+  
+</form>
+
+</div>
+<hr>
+<section class="py-5 bg-image overlay-primary fixed overlay">
+  <div class="container">
+      <div class="row align-items-center">
+          <div class="col-md-8">
+              <h2 class="text-black">Looking For A Job?</h2>
+              <p class="mb-0 text-black lead">Lorem ipsum dolor sit amet consectetur adipisicing elit tempora
+                  adipisci
+                  impedit.</p>
+              <p></p>
+          </div>
+          <div class="col-md-3 ml-auto">
+              <a href="register" class="btn btn-warning btn-block btn-lg">Sign Up</a>
+          </div>
+      </div>
+  </div>
+</section>
+<hr>
+<div class="container-fluid footer  ">
+<div class="row">
+  <div class="column  col-sm-4 text-center ">
+    <ul class="list-unstyled ">
+      <li>order</li>
+      <li>fhd</li>
+      <li>sdjhfjdh</li>
+      <li>fdhf</li>
+     </ul>
+  </div>
+  <div class="column col-sm-4  text-center">
+    <ul class="list-unstyled">
+      <li>dhgs</li>
+      <li>fdghff</li>
+      <li>ahcfdafda</li>
+      <li>fkhgadhf</li>
+    </ul>
+  </div>
+  <div class="column col-sm-4  text-center">
+    <ul class="list-unstyled">
+      <li>dhgs</li>
+      <li>fdghff</li>
+      <li>ahcfdafda</li>
+      <li>fkhgadhf</li>
+    </ul>
+  </div> 
+</div>
+<p class="mt-5 mb-3 text-muted text-center mt-0">&copy; 2019-2020</p>
+</div>
+<script>
+  $(document).ready(function(){
+  
+    $("#alert").fadeOut(3000);
+  });
+</script>
+</body>
+</html>

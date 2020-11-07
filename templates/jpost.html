@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=], initial-scale=1.0">
+  <title>Post Job</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <style>
+    body {
+      background:-webkit-linear-gradient(left, #498b70, #458f4f);
+    }
+
+
+
+    div.post {
+      width: 80%;
+    }
+
+   
+  </style>
+</head>
+
+<body>
+  <!-- Navigation bar starts -->
+  {% include "navbar.html" %}
+
+  <div class="container post my-4">
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8 mb-5 mb-lg-0">
+        <center>
+          <h1 class="lead text-center font-weight-bold text-white">Post a Job</h1>
+        </center>
+        {% csrf_token %}
+        <form action="/postj" method="POST" class="" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input type="hidden" name="csrfmiddlewaretoken"
+            value="5mGRdxZc5P98Xs5IwKbrtDk820HvLwF5Hu8KpNkS2fnCYJ1IPnshLmXBSpHtgjM5">
+          {% csrf_token %}
+
+          <div class="form-group">
+
+
+            <label class="control-label text-white " for="id_title">Title</label>
+
+
+            <div class=" ">
+              <input type="text" name="title" maxlength="100" placeholder="Software Engineer, Web Designer"
+                class=" form-control  " required="" id="id_title">
+
+
+
+
+            </div>
+
+          </div>
+
+
+
+
+          <div class="form-group">
+
+
+            <label class="control-label text-white " for="id_company_name">Company name</label>
+
+
+            <div class=" ">
+              <input type="text" name="company_name" maxlength="200" class=" form-control" required=""
+                id="id_company_name">
+
+
+
+
+            </div>
+
+          </div>
+
+
+
+
+          <div class="form-group">
+
+
+            <label class="control-label text-white " for="id_employment_status">Employment status</label>
+
+
+            <div class=" ">
+              <select name="employment_status" class=" form-control" required="" id="id_employment_status">
+                <option value="" selected="">---------</option>
+
+                <option value="Part Time">Part Time</option>
+
+                <option value="Full Time">Full Time</option>
+
+                <option value="Freelance">Freelancer</option>
+
+              </select>
+
+
+
+
+            </div>
+
+          </div>
+
+
+
+
+          <div class="form-group">
+
+
+            <label class="control-label text-white " for="id_vacancy">Vacancy</label>
+
+
+            <div class=" ">
+              <input type="text" name="vacancy" maxlength="10" class=" form-control" required="" id="id_vacancy">
+
+
+
+
+            </div>
+
+          </div>
+
+
+
+
+          <div class="form-group">
+
+
+            <label class="control-label text-white " for="id_gender">Gender</label>
+
+
+            <div class=" ">
+              <select name="gender" class=" form-control" required="" id="id_gender">
+                <option value="" selected="">---------</option>
+
+                <option value="Male">Male</option>
+
+                <option value="Female">Female</option>
+
+                <option value="Any">Any</option>
+
+              </select>
+
+
+
+
+            </div>
+
+          </div>
+
+
+
+
+          <div class="form-group">
+
+
+            <label class="control-label text-white  " for="id_category">Category</label>
+
+
+            <div class=" ">
+              <select name="category" class=" form-control" required="" id="id_category">
+                <option value="" selected="">---------</option>
+
+                <option value="Web Design">Web Design</option>
+
+                <option value="Graphic Design">Graphic Design</option>
+
+                <option value="Web Developing">Web Developing</option>
+
+                <option value="Software Engineering">Software Engineering</option>
+
+                <option value="HR">HR</option>
+
+                <option value="Marketing">Marketing</option>
+
+              </select>
+
+
+
+
+            </div>
+
+          </div>
+
+
+
+
+          <div class="form-group">
+
+
+            <label class="control-label text-white " for="id_description">Description</label>
+
+
+            <div class=" ">
+              <textarea name="description" cols="40" rows="10" class=" form-control" required=""
+                id="id_description"></textarea>
+
+
+
+
+            </div>
+
+          </div>
+
+
+
+
+          <div class="form-group">
+
+
+            <label class="control-label text-white " for="id_responsibilities">Responsibilities</label>
+
+
+            <div class=" ">
+              <textarea name="responsibilities" cols="40" rows="10" class=" form-control" required=""
+                id="id_responsibilities"></textarea>
+
+
+
+
+            </div>
+
+          </div>
+
+
+
+
+          <div class="form-group">
+
+
+            <label class="control-label text-white " for="id_experience">Experience</label>
+
+
+            <div class=" ">
+              <input type="text" name="experience" maxlength="100" class=" form-control" required="" id="id_experience">
+
+
+
+
+            </div>
+
+          </div>
+
+
+
+
+          <div class="form-group">
+
+
+            <label class="control-label text-white " for="id_job_location">Job Location</label>
+
+
+            <div class=" ">
+              <input type="text" name="job_location" maxlength="120" placeholder="Enter your Locatiom"
+                class=" form-control" required="" id="id_job_location">
+
+
+
+
+            </div>
+
+          </div>
+
+
+
+
+          <div class="form-group">
+
+
+            <label class="control-label text-white " for="id_Salary">Salary</label>
+
+
+            <div class=" ">
+              <input type="text" name="Salary" maxlength="100" placeholder="20k-80k BDT, 4k-5k USD, Negotiable"
+                class=" form-control" id="id_Salary">
+
+
+
+
+            </div>
+
+          </div>
+
+
+
+
+          <div class="form-group">
+
+
+            <label class="control-label  text-white" for="id_application_deadline">Application deadline</label>
+
+
+            <div class=" ">
+              <input type="text" name="application_deadline" placeholder="YYYY-MM-DD" class=" form-control" required=""
+                id="id_application_deadline">
+
+
+
+
+            </div>
+
+          </div>
+
+
+
+
+          <div class="form-group">
+
+
+            <label class="control-label  text-white" for="id_published_on">Publish Date</label>
+
+
+            <div class=" ">
+              <input type="text" name="published_on" value="2020-11-02 17:44:48" class=" form-control" required=""
+                id="id_published_on"><input type="hidden" name="initial-published_on" value="2020-11-02 17:44:48"
+                id="initial-id_published_on">
+
+
+
+
+            </div>
+
+          </div>
+
+
+
+
+          <div class="row form-group">
+            <div class="col-md-12 my-2">
+              <input type="submit" value="POST" class="btn btn-warning btn-lg text-center text-white">
+            </div>
+          </div>
+
+
+        </form>
+      </div>
+
+
+    </div>
+
+  </div>
+  {% include 'footer.html'%}
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
