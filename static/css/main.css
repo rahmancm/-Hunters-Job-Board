@@ -2,7 +2,7 @@
 
 /* Navbar Components start*/
 navbar {
-  background-color: none;
+  background-color:none;
 }
 
 div.navbar-main{
@@ -20,6 +20,10 @@ nav li a {
 .navbar-brand {
   color: aliceblue;
   font-size: 30px;
+  text-decoration: none;
+}
+.navbar-brand:hover{
+  text-decoration: none;
 }
 
 nav li a:hover {
@@ -28,7 +32,9 @@ nav li a:hover {
 
 
 }
-
+.dropdown-item:hover{
+  background-color: lightslategray;
+}
 /* Navbar Components End*/
 
 div.maintext {

@@ -6,22 +6,16 @@ from django.contrib.auth.models import User
 
 
 
+
 # Create your models here.
-class userarea(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
-                             null=True, editable=False, blank=True)
-    first_name=models.CharField(max_length=100)
-    last_name=models.CharField( max_length=50)
-    username=models.CharField(max_length=30)
-    profile_pic=models.ImageField(null=True,blank=True)
-    email=models.CharField(max_length=30)
-    phone=models.CharField(max_length=50)
-    password=models.CharField(max_length=30)
-    confirm_password=models.CharField(max_length=30)
+class Userprofile(models.Model):
+    user = models.OneToOneField(User, related_name='userprofile', on_delete=models.CASCADE)
+    is_employer =models.BooleanField(default=False)
+    
+    
+    
+User.userprofile = property(lambda u: Userprofile.objects.get_or_create(user=u)[0])
 
-
-    def __str__(self):
-        return self.first_name
 JOB_TYPE = (
     ('Part Time', 'Part Time'),
     ('Full Time', 'Full Time'),
@@ -44,8 +38,8 @@ GENDER = (
 )
 
 class JobPosting(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
-                             null=True, editable=False, blank=True)
+    created_by = models.ForeignKey(User,related_name='jobs', on_delete=models.CASCADE,
+                        null=True ,  editable=False, blank=True)
     title = models.CharField(max_length=100)
     company_name = models.CharField(max_length=200)
     employment_status = models.CharField(choices=JOB_TYPE, max_length=10)
@@ -58,8 +52,9 @@ class JobPosting(models.Model):
     job_location = models.CharField(max_length=120)
     Salary = models.CharField(max_length=100, null=True, blank=True)
     application_deadline = models.DateTimeField()
-    published_on = models.DateTimeField(default=timezone.now)
-    
+    published_on = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        ordering=['-published_on']
     
     def __str__(self):
         return self.title

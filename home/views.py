@@ -2,14 +2,15 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
 from django.contrib.auth import authenticate,login
 from django.contrib.auth import logout
-from .models import userarea
+
 from home.models import JobPosting
 from django.shortcuts import render, redirect  , get_object_or_404
 from .forms import EmployeeForm  
-from .models import JobPosting  
+from .models import JobPosting ,Userprofile 
 from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def index(request):
@@ -52,11 +53,18 @@ def register(request):
            last_name=request.POST["last_name"]
            username=request.POST["username"]
            email=request.POST["email"]
+          
            password=request.POST["password"]
            confirm_password=request.POST["confirm_password"]
            user=User.objects.create(first_name=first_name,last_name=last_name,username=username,email=email,password=password)
-           user.save()
-           print("User created")
+           
+           account_type= request.POST.get('account_type','jobseeker')
+           if account_type == 'employer':
+               userprofile=Userprofile.objects.create(user=user,is_employer=True)
+               userprofile.save()
+           else:
+               userprofile=Userprofile.objects.create(user=user)
+               userprofile.save()
            return redirect('/login')
        else:  
            return render(request,'register.html')    
@@ -68,7 +76,9 @@ def post(request):
         form = EmployeeForm(request.POST)  
         if form.is_valid():  
             try:  
-                form.save()  
+                job=form.save()
+                job.created_by = request.user
+                job.save()  
                 return redirect('/')  
             except:  
                 pass  
@@ -81,9 +91,9 @@ def job_single(request, pk):
     context={'q':q
               }
     return render(request, "job_single.html",context)
-
+@login_required
 def profile(request):
-     if request.user.is_anonymous :
-           
-        return redirect('/login')
-     return render(request,"profile.html")
+      userdetails=Userprofile.objects.all()
+      context={'userprofile':request.user.userprofile}
+     
+      return render(request,"profile.html",context)

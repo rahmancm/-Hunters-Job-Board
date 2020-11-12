@@ -130,6 +130,11 @@
                                 </h5>
                                 <h6>
                                     Web Developer and Designer
+                                    {% if userprofile.is_employer %}
+                                         <p class="pt-2">Signed in as Employer</p>
+                                    {% else%}
+                                        <p class="pt-2">Signed in as Employee</p>   
+                                    {% endif %}    
                                 </h6>
                                 <p class="proile-rating">RANKINGS : <span>8/10</span></p>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -147,7 +152,9 @@
                 </div>
             </div>
             <div class="row">
+           
                 <div class="col-md-4">
+                
                     <div class="profile-work">
                         <p>WORK LINK</p>
                         <a href="">Website Link</a><br/>
@@ -193,7 +200,7 @@
                                             <label>Phone</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <p>123 456 7890</p>
+                                            <p>{{request.user.userdetails.phone}}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -205,6 +212,7 @@
                                         </div>
                                     </div>
                         </div>
+                      
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -250,15 +258,31 @@
                                 <div class="col-md-12">
                                     <label>Your Bio</label><br/>
                                     <p>Your detail description</p>
+                                    
+                                  
+                                   
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+              <div class="container text-center">
+                                         <h3>Jobs that you have posted </h3> <hr>
+                                 <p>{% if userprofile.is_employer %}
+                                         {% for job in request.user.jobs.all%}
+                                               <h6>{{job.title}}</h6>
+                                               <p> {{job.published_on}}
+                                               </P>
+
+                                         {% endfor %}     
+                                    {% else%}
+                                        <P>You haven't applied for any jobs </p> 
+                                    {% endif %}   </p>         
+                        </div>
         </form>           
     </div>
-    {% include 'footer.html'%}
+ {% include 'footer.html'%}
 <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -270,5 +294,5 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"></script>
-</body>
+</body> 
 </html>
