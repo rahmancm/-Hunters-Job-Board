@@ -5,7 +5,7 @@ from django.contrib.auth import logout
 
 from home.models import JobPosting
 from django.shortcuts import render, redirect  , get_object_or_404
-from .forms import EmployeeForm  
+from .forms import EmployeeForm, ApplicationForm
 from .models import JobPosting ,Userprofile 
 from django.urls import reverse
 from django.contrib import messages
@@ -97,3 +97,23 @@ def profile(request):
       context={'userprofile':request.user.userprofile}
      
       return render(request,"profile.html",context)
+
+@login_required
+def apply_for_job(request,pk):
+    job=JobPosting.objects.get(id=pk)
+
+    if request.method == 'POST':
+         form= ApplicationForm(request.POST)     
+
+         if form.is_valid():
+             application=form.save(commit=False)
+             application.job=job
+             application.created_by=request.user
+             application.save()
+             print('Application saved')
+            
+             return redirect("/profile")
+    else:
+             form=ApplicationForm()
+
+    return render(request,'application.html',{'form':form,'job':job})

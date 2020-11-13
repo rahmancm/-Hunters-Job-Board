@@ -11,8 +11,7 @@ from django.contrib.auth.models import User
 class Userprofile(models.Model):
     user = models.OneToOneField(User, related_name='userprofile', on_delete=models.CASCADE)
     is_employer =models.BooleanField(default=False)
-    
-    
+  
     
 User.userprofile = property(lambda u: Userprofile.objects.get_or_create(user=u)[0])
 
@@ -60,3 +59,13 @@ class JobPosting(models.Model):
         return self.title
     def get_absolute_url(self):
         return reverse("job_single", args=[str(self.pk)])
+
+
+
+class Application(models.Model):
+    job = models.ForeignKey(JobPosting,related_name='applications',on_delete=models.CASCADE)
+    content=models.CharField( max_length=300)
+    experiance=models.CharField(max_length=300)
+    created_by = models.ForeignKey(User,related_name='applications', on_delete=models.CASCADE,
+                        null=True ,  editable=False, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
