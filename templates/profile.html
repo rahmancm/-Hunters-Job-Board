@@ -268,16 +268,24 @@
                 </div>
             </div>
               <div class="container text-center">
-                                         <h3>Jobs that you have posted </h3> <hr>
+                                        
                                  <p>{% if userprofile.is_employer %}
+                                         <h3>Jobs that you have posted </h3> <hr>
                                          {% for job in request.user.jobs.all%}
-                                               <h6>{{job.title}}</h6>
-                                               <p> {{job.published_on}}
-                                               </P>
-
-                                         {% endfor %}     
+                                             <a href="{% url 'view_postedjob' job.id %}">  <h6>{{job.title}}</h6> </a>
+                                               <p><strong> Posted on:</strong> {{job.published_on}}</P>
+                                        {% empty%}
+                                                 <p>You haven't posted any Jobs yet</p>
+                                        {% endfor %}     
                                     {% else%}
-                                        <P>You haven't posted for any jobs </p> 
+                                              <h3>Jobs that you have applied </h3> <hr>
+                                          {% for application in request.user.applications.all%}
+                                               <h6><a href="{% url 'view_application' application.id%}">Title :{{application.job.title}}</h6> </a>
+                                               <p>Content : {{application.content}} </P>
+                                              <p>Experiance : {{application.experiance}} </P>
+                                          {% empty%}
+                                                 <p>You haven't applied any Jobs yet</p>
+                                          {% endfor %}     
                                     {% endif %}   </p>         
                         </div>
         </form>           

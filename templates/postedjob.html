@@ -1,0 +1,29 @@
+{% include 'navbar.html' %}
+<section>
+<h4 class="text-center m-5 pt-4  " >List of applicants that are applied for "{{job.title}}" job</h4> <hr>
+ {% for application in job.applications.all%}
+ <div class="col-sm-6 pb-3 text-center  border bg-light m-5"><a class='text-decoration-none text-dark' href="{% url 'view_application' application.id%}">{{application.created_by.get_full_name}}</a></div>
+{% empty %}
+   <p class= "text-center m-5 text-warning border py-5 ">Currently no one has applied for this Job </p>
+{% endfor %}
+</section>
+{% include 'footer.html' %}
+ <style>
+ body{
+     background: -webkit-linear-gradient(left, #498b70, #458f4f);
+ }
+ section{
+     background:white;
+ }
+ </style>
+   <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+  integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+  integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+  crossorigin="anonymous"></script>

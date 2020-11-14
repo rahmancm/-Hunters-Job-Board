@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Application
+from .models import Application,ConversationMessage
 from .models import JobPosting,Userprofile
 from django.http import request
 
@@ -11,4 +11,5 @@ class JobAdmin(admin.ModelAdmin):
 admin.site.register(JobPosting,JobAdmin)
 admin.site.register(Userprofile)
 admin.site.register(Application)
+admin.site.register(ConversationMessage)
 

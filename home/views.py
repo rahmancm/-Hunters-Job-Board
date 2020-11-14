@@ -3,7 +3,7 @@ from django.contrib.auth.models import User,auth
 from django.contrib.auth import authenticate,login
 from django.contrib.auth import logout
 
-from home.models import JobPosting
+from home.models import JobPosting ,Application ,ConversationMessage
 from django.shortcuts import render, redirect  , get_object_or_404
 from .forms import EmployeeForm, ApplicationForm
 from .models import JobPosting ,Userprofile 
@@ -56,7 +56,7 @@ def register(request):
           
            password=request.POST["password"]
            confirm_password=request.POST["confirm_password"]
-           user=User.objects.create(first_name=first_name,last_name=last_name,username=username,email=email,password=password)
+           user=User.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password)
            
            account_type= request.POST.get('account_type','jobseeker')
            if account_type == 'employer':
@@ -117,3 +117,22 @@ def apply_for_job(request,pk):
              form=ApplicationForm()
 
     return render(request,'application.html',{'form':form,'job':job})
+@login_required
+
+def view_application(request,app_id):
+    if request.user.userprofile.is_employer:
+        application = get_object_or_404(Application, pk= app_id, job__created_by= request.user)
+    else:
+        application = get_object_or_404(Application, pk= app_id, created_by= request.user)
+    if request.method== "POST":
+        content= request.POST.get('content') 
+        if content:
+            conversationmessage= ConversationMessage.objects.create(application=application,content=content, created_by= request.user)
+            return redirect ('view_application',app_id=app_id)   
+    return render(request,'viewapplication.html',{'application':application})
+
+
+def view_postedjob(request,id):
+    job=get_object_or_404(JobPosting,pk=id, created_by=request.user)
+
+    return render (request,"postedjob.html",{'job':job})
