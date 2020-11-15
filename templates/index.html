@@ -116,7 +116,7 @@
             </span>
             <h4><a href="{% url 'job_single' job.pk%}">{{job.title}}</a></h4>
             In: <strong>{{job.category}}</strong><br>
-             Published On :{{job.published_on}}
+             Published On :{{job.published_on|date}}
             <p></p>
           </div>
           <div class="col-md-3 text-left">

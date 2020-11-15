@@ -1,0 +1,48 @@
+
+{% include 'navbar.html' %}
+<div class="container">
+    <div class="jumbotron m-2 text-center">
+    {% if not notifications %}
+    <p>There is no notifications </p>
+    </div>
+    {%endif%}
+    {% for notification in notifications %}
+      <div class="jumbotron">
+        {% if notification.notification_type == 'message' %}
+         <a href="{% url notifications %}?goto=view_application&notification={{notification.extra_id}}" >
+         <strong>{{notification.created_by.username}} </strong> sent you a message
+         <small>{{notification.created_at|timesince}} ago</small></a>
+        {% elif notification.notification_type == 'application' %}
+         <a href="{% url notifications %}?goto=view_application&notification={{notification.extra_id}}" >
+         <strong>{{notification.created_by.username}} </strong> applied for the job 
+         <small>{{notification.created_at|timesince}} ago</small></a>
+      </div>
+      {%endif%}
+    {%endfor%}
+     
+
+</div>
+
+
+</div>
+
+
+{% include 'footer.html' %}
+<!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+    <style>
+ body{
+     background: -webkit-linear-gradient(left, #498b70, #458f4f);
+ }
+
+
+ </style>

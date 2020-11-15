@@ -155,7 +155,7 @@
            
                 <div class="col-md-4">
                 
-                    <div class="profile-work">
+                    <div class="profile-work sm-hidden ">
                         <p>WORK LINK</p>
                         <a href="">Website Link</a><br/>
                         <a href="">Bootsnipp Profile</a><br/>
@@ -270,10 +270,16 @@
               <div class="container text-center">
                                         
                                  <p>{% if userprofile.is_employer %}
-                                         <h3>Jobs that you have posted </h3> <hr>
+                                         <h3 class="mb-2">Jobs that you have posted </h3> <hr>
                                          {% for job in request.user.jobs.all%}
+                                            <div class="row border rounded  ">
+                                            <div class="column col-sm-6 text-center " >
                                              <a href="{% url 'view_postedjob' job.id %}">  <h6>{{job.title}}</h6> </a>
-                                               <p><strong> Posted on:</strong> {{job.published_on}}</P>
+                                             </div>
+                                             <div class="column col-sm-3  text-right " >
+                                               <p><strong> Posted on:</strong> {{job.published_on|date}}</P> 
+                                               </div>
+                                               </div><hr>
                                         {% empty%}
                                                  <p>You haven't posted any Jobs yet</p>
                                         {% endfor %}     

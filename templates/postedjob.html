@@ -1,11 +1,29 @@
 {% include 'navbar.html' %}
 <section>
 <h4 class="text-center m-5 pt-4  " >List of applicants that are applied for "{{job.title}}" job</h4> <hr>
- {% for application in job.applications.all%}
- <div class="col-sm-6 pb-3 text-center  border bg-light m-5"><a class='text-decoration-none text-dark' href="{% url 'view_application' application.id%}">{{application.created_by.get_full_name}}</a></div>
+ 
+    <table class="table col-sm-12" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Full Name</th>
+                                            <th>Username</th>
+                                            <th>Email ID</th>
+                                        </tr>
+                                    </thead>
+                                    {% for application in job.applications.all%}
+                                    <tbody>
+
+                                        <tr>
+                                            <td><a href="{% url 'view_application' application.id%}">{{application.created_by.get_full_name}}</a></td>
+                                            <td>{{application.created_by.username}}</td>
+                                            <td>{{application.created_by.email}}</td>
+                                        </tr>
+                                    </tbody>
+                              
 {% empty %}
    <p class= "text-center m-5 text-warning border py-5 ">Currently no one has applied for this Job </p>
 {% endfor %}
+  </table>
 </section>
 {% include 'footer.html' %}
  <style>
@@ -14,6 +32,10 @@
  }
  section{
      background:white;
+     padding:0% 20% 0% 20%;
+ }
+ table{
+  
  }
  </style>
    <!-- Optional JavaScript -->
@@ -27,3 +49,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
   integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
   crossorigin="anonymous"></script>
+
+
+ 

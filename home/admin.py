@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Application,ConversationMessage
-from .models import JobPosting,Userprofile
+from .models import JobPosting,Userprofile,Notification
 from django.http import request
 
 # Register your models here.
@@ -12,4 +12,5 @@ admin.site.register(JobPosting,JobAdmin)
 admin.site.register(Userprofile)
 admin.site.register(Application)
 admin.site.register(ConversationMessage)
+admin.site.register(Notification)
 

@@ -14,7 +14,7 @@
             </span>
             <h4>{{application.job.title}}</a></h4>
             In: <strong>{{application.job.category}}</strong><br>
-             Published On :{{application.job.published_on}}
+             <strong> Published On :</strong>{{application.job.published_on|date}}
             <p></p>
           </div>
           <div class="col-md-3 text-left">
@@ -22,16 +22,16 @@
            <strong> Experiance:</strong><p>{{application.experiance}}</p>
             <span class="meta"></span>
           </div>
-          <div class="col-md-3 text-md-right " > <strong class="text-black">Salary :</strong>
+          <div class="col-md-3 pt-4 " > <strong class="text-black">Salary :</strong>
             {{application.job.Salary}}
-        <strong>    <p class="pt-5"> Date applied :</strong>{{application.created_at}} </p>
+        <strong>    <p class="pt-5"> Date applied :</strong>{{application.created_at|date}} </p>
           </div>
         </div>
       </div>
      <hr>  <h5 class="text-center  ">Conversations</h5> 
         {% for message in application.conversationmessages.all %}
-         <div class="chat_ib border m-2 "> 
-                 <p class="font-weight-bold">{{message.created_by.username}} <span class="chat_date  pl-5">{{message.created_at|timesince}} ago </span></p>
+         <div class="chat_ib border rounded  m-2 p-0 jumbotron  "> 
+                 <p class="font-weight-bold pl-1  pt-0 pb-0">{{message.created_by.username}} <span class="chat_date float-right pl-5">{{message.created_at|timesince}} ago </span></p>
              <hr>     <h5 class=" p-2" >{{message.content}}</h5>
                 </div>
           {% empty %}

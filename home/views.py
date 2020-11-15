@@ -6,10 +6,11 @@ from django.contrib.auth import logout
 from home.models import JobPosting ,Application ,ConversationMessage
 from django.shortcuts import render, redirect  , get_object_or_404
 from .forms import EmployeeForm, ApplicationForm
-from .models import JobPosting ,Userprofile 
+from .models import JobPosting ,Userprofile ,Notification
 from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from home.utilities import create_notification
 
 
 # Create your views here.
@@ -110,7 +111,7 @@ def apply_for_job(request,pk):
              application.job=job
              application.created_by=request.user
              application.save()
-             print('Application saved')
+             create_notification(request , to_user=job.created_by ,notification_type='application', extra_id=application.id)
             
              return redirect("/profile")
     else:
@@ -136,3 +137,20 @@ def view_postedjob(request,id):
     job=get_object_or_404(JobPosting,pk=id, created_by=request.user)
 
     return render (request,"postedjob.html",{'job':job})
+
+@login_required
+def notification(request):
+    goto= request.GET.get('goto','')
+    notification_id=request.GET.get('notification',0)
+
+    if goto !='':
+        notification=Notification.objects.get(pk=notification_id)
+        notification.is_read==True
+        notification.save()
+
+        if notification.notification_type == Notification.MESSAGE:
+            return redirect('view_application',app_id=notification.extra_id)
+        elif notification.notification_type == Notification.APPLICATION:
+            return redirect('view_application',app_id=notification.extra_id) 
+    return render(request,'notification.html')
+
