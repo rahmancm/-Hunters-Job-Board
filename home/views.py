@@ -129,6 +129,7 @@ def view_application(request,app_id):
         content= request.POST.get('content') 
         if content:
             conversationmessage= ConversationMessage.objects.create(application=application,content=content, created_by= request.user)
+            create_notification(request , to_user=application.created_by ,notification_type='message', extra_id=application.id)
             return redirect ('view_application',app_id=app_id)   
     return render(request,'viewapplication.html',{'application':application})
 
@@ -142,10 +143,10 @@ def view_postedjob(request,id):
 def notification(request):
     goto= request.GET.get('goto','')
     notification_id=request.GET.get('notification',0)
-
+    extra_id =request.GET.get('extra_id',0) 
     if goto !='':
         notification=Notification.objects.get(pk=notification_id)
-        notification.is_read==True
+        notification.is_read=True
         notification.save()
 
         if notification.notification_type == Notification.MESSAGE:

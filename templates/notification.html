@@ -7,13 +7,13 @@
     </div>
     {%endif%}
     {% for notification in notifications %}
-      <div class="jumbotron">
+      <div class="jumbotron m-0 p-1 ">
         {% if notification.notification_type == 'message' %}
-         <a href="{% url notifications %}?goto=view_application&notification={{notification.extra_id}}" >
+         <a href="{% url 'notification' %}?goto=view_application&notification={{notification.id}}&extra_id={{notification.extra_id}}" >
          <strong>{{notification.created_by.username}} </strong> sent you a message
          <small>{{notification.created_at|timesince}} ago</small></a>
         {% elif notification.notification_type == 'application' %}
-         <a href="{% url notifications %}?goto=view_application&notification={{notification.extra_id}}" >
+         <a href="{% url 'notification' %}?goto=view_application&notification={{notification.id}}&extra_id={{notification.extra_id}}" >
          <strong>{{notification.created_by.username}} </strong> applied for the job 
          <small>{{notification.created_at|timesince}} ago</small></a>
       </div>
