@@ -53,10 +53,11 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="row">
-
+                          {% if not userprofile.is_employer %}
                         <div class="col-6">
                             <a href="{%url 'apply_for_job' q.id %}" class="btn btn-block btn-primary btn-md">Apply Now</a>
                         </div>
+                        {% endif %}  
                     </div>
                 </div>
             </div>

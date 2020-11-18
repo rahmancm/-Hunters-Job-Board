@@ -3,11 +3,12 @@
 /* Navbar Components start*/
 navbar {
   background-color:none;
+ 
+  
 }
 
 div.navbar-main{
   color: white;
-  margin: auto;
 }
 
 nav li a {

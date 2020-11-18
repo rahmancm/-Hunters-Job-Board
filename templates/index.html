@@ -65,10 +65,10 @@
           <h1 class="text-white font-weight-bold">A website for your career</h1>
           <p> </p>
         </div>
-        <form id="job-main-form" method="get" action="/jobs/search/" class="search-jobs-form">
+        <form id="job-main-form" method="get" action="{% url 'search_results' %}" class="search-jobs-form">
           <div class="row mb-5">
             <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-              <input type="text" id="title" name="title" class="form-control " placeholder=" Software Engineer ... ">
+              <input type="text" id="title" name="title" class="form-control " placeholder=" Software Engineer ... " Required>
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
               <input type="text" id="job_location" name="job_location" class="form-control " placeholder="Location">
@@ -94,11 +94,15 @@
       </div>
     </div>
   </div>
-   
-  <div class="containe-fluid text-center my-5 " id="postjob">
+   {% if userprofile.is_employer %}
+  <div class="container-fluid text-center my-5 " id="postjob">
     <a href="/postj"><button class="text-center btn btn-lg btn-success ">Post a Job </button></a>
   </div>
-   
+ {% else%}
+  <div class="container-fluid text-center my-5 jumbotron bg-light  "  height="40px"  id="postjob">
+    
+  </div>
+  {% endif %}  
   {% for job  in jobs%}
   <section class="site-section mt-0">
     

@@ -11,19 +11,21 @@ from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from home.utilities import create_notification
+from django.views.generic import  ListView
+from django.db.models import Q
 
 
 # Create your views here.
 def index(request):
     jobs=JobPosting.objects.all()
- 
+   
     if request.user.is_anonymous :
        
         return redirect('/login')
        
         
     return render(request,'index.html',{'jobs':jobs,
-                        })
+                      'userprofile':request.user.userprofile  })
 
 def loginUser(request):
     if request.method=="POST":
@@ -89,8 +91,8 @@ def post(request):
 def job_single(request, pk):
     
     q = JobPosting.objects.get(id=pk)
-    context={'q':q
-              }
+    context={'q':q,
+              'userprofile':request.user.userprofile}
     return render(request, "job_single.html",context)
 @login_required
 def profile(request):
@@ -155,3 +157,15 @@ def notification(request):
             return redirect('view_application',app_id=notification.extra_id) 
     return render(request,'notification.html')
 
+
+class SearchResultsView(ListView):
+    model = JobPosting
+    template_name = 'search_results.html'
+
+    def get_queryset(self): # new
+        query = self.request.GET.get('title','job_location')
+        object_list = JobPosting.objects.filter(
+            Q(title__icontains=query) | Q(job_location__icontains=query)  | Q(employment_status__icontains=query)
+        )
+        return object_list
+        return query
