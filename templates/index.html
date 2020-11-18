@@ -62,10 +62,11 @@
     <div class="row align-items-center justify-content-center">
       <div class="col-md-12">
         <div class="mb-5 text-center">
-          <h1 class="text-white font-weight-bold">A website for your career</h1>
+          <h1 class="text-white font-weight-bold">A website that changes your life </h1>
           <p> </p>
         </div>
         <form id="job-main-form" method="get" action="{% url 'search_results' %}" class="search-jobs-form">
+        {% csrf_token %}
           <div class="row mb-5">
             <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
               <input type="text" id="title" name="title" class="form-control " placeholder=" Software Engineer ... " Required>

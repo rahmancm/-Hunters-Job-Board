@@ -10,7 +10,10 @@
 <ul class="list-unstyled search ">
   {% for job in object_list %}
     <li class=" p-1" >
-    <a href="{% url 'job_single' job.id %}" > {{ job.title }}</a> &nbsp &nbsp {{ job.job_location }}&nbsp &nbsp  {{job.employment_status}}
+    <a href="{% url 'job_single' job.id %}" > <strong> {{ job.title }}  </strong></a> &nbsp &nbsp {{ job.job_location }}&nbsp &nbsp <span class="badge badge-secondary px-2 py-1 mb-3">
+              {{job.employment_status}}
+            </span> <br>
+     Category: &nbsp  <strong> {{job.category}} </strong>&nbsp &nbsp Salary:{{ job.Salary }} <hr>
     </li>
     
     

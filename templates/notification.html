@@ -2,7 +2,7 @@
 <div class="container-fluid  text-center bg-light ">
 
 
-    <p class="font"> You have no notifications </p>
+    <p class="font"> You have no new notifications !!! </p>
 </div>
 {%endif%} {% for notification in notifications %}
 <div class="container-fluid fornot text-center bg-light ">
@@ -38,6 +38,7 @@
     body {
         background: -webkit-linear-gradient(left, #498b70, #458f4f);
         overflow: hidden;
+        scroll-behavior: smooth;
     }
     
     div.fornot {
@@ -52,5 +53,7 @@
     
     p.font {
         font-size: 20px;
+        padding-top: 1cm;
+        ;
     }
 </style>
