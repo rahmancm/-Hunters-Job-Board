@@ -1,12 +1,12 @@
 <snippet>
   <content><![CDATA[
+
 # ${1:Project Name}
  Job Portal 
 ## Installation
 Python Django HTML CSS 
+
 ## Usage
-
-
 
 ## History
 
