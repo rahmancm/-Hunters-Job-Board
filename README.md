@@ -2,7 +2,8 @@
   <content><![CDATA[
 
 # ${1:Project Name}
- Job Portal 
+Job Portal 
+
 ## Installation
 Python Django HTML CSS 
 
