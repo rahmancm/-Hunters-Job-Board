@@ -1,11 +1,11 @@
 <snippet>
   <content><![CDATA[
 # ${1:Project Name}
-TODO: Job Portal with good user interface
+ Job Portal 
 ## Installation
 Python Django HTML CSS 
 ## Usage
-TODO: Write usage instructions
+
 
 
 ## History
