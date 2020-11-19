@@ -70,9 +70,10 @@ div.footer {
         margin-right: 20%
     }
     .logout {
-        border: 1px solid red;
+        border: 1px solid rgb(88, 30, 30);
         background: red;
         display: block;
+        width: auto;
     }
     li.dropdown {
         display: none;
