@@ -1,64 +1,67 @@
 {% include 'navbar.html' %}
 
 
- <section class="site-section mt-0 ">
-    
+<section class="site-section mt-0 ">
+
     <div class="container pb-5 ">
-    <h4 class="text-center m-5 pt-4 " >View application</h4> <hr>
-      <div class="mb-5">
-        <div class="row align-items-start job-item border-bottom pb-0 mb-3 pt-0" >
-         
-          <div class="col-md-4 text-left">
-            <span class="badge badge-secondary px-2 py-1 mb-3">
+        <h4 class="text-center m-5 pt-4 ">View application</h4>
+        <hr>
+        <div class="mb-5">
+            <div class="row align-items-start job-item border-bottom pb-0 mb-3 pt-0">
+
+                <div class="col-md-4 text-left">
+                    <span class="badge badge-secondary px-2 py-1 mb-3">
               {{application.job.employment_status}}
             </span>
-            <h4>{{application.job.title}}</a></h4>
-            In: <strong>{{application.job.category}}</strong><br>
-             <strong> Published On :</strong>{{application.job.published_on|date}}
-            <p></p>
-          </div>
-          <div class="col-md-3 text-left">
-            <strong>Content:</strong><p>{{application.content}}</p>
-           <strong> Experiance:</strong><p>{{application.experiance}}</p>
-            <span class="meta"></span>
-          </div>
-          <div class="col-md-3 pt-4 " > <strong class="text-black">Salary :</strong>
-            {{application.job.Salary}}
-        <strong>    <p class="pt-5"> Date applied :</strong>{{application.created_at|date}} </p>
-          </div>
-        </div>
-      </div>
-     <hr>  <h5 class="text-center  ">Conversations</h5> 
-        {% for message in application.conversationmessages.all %}
-         <div class="chat_ib border rounded  m-2 p-0 jumbotron  "> 
-                 <p class="font-weight-bold pl-1  pt-0 pb-0">{{message.created_by.username}} <span class="chat_date float-right pl-5">{{message.created_at|timesince}} ago </span></p>
-             <hr>     <h5 class=" p-2" >{{message.content}}</h5>
+                    <h4>{{application.job.title}}</a>
+                    </h4>
+                    In: <strong>{{application.job.category}}</strong><br>
+                    <strong> Published On :</strong>{{application.job.published_on|date}}
+                    <p></p>
                 </div>
-          {% empty %}
-            <p class="text-center">Currently you don't have any messages </p>       
+                <div class="col-md-3 text-left">
+                    <strong>Content:</strong>
+                    <p>{{application.content}}</p>
+                    <strong> Experiance:</strong>
+                    <p>{{application.experiance}}</p>
+                    <span class="meta"></span>
+                </div>
+                <div class="col-md-3 pt-4 "> <strong class="text-black">Salary :</strong> {{application.job.Salary}}
+                    <strong>    <p class="pt-5"> Date applied :</strong>{{application.created_at|date}} </p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h5 class="text-center  ">Conversations</h5>
+        {% for message in application.conversationmessages.all %}
+        <div class="chat_ib border rounded  m-2 p-0 jumbotron  ">
+            <p class="font-weight-bold pl-1  pt-0 pb-0">{{message.created_by.username}} <span class="chat_date float-right pl-5">{{message.created_at|timesince}} ago </span></p>
+            <hr>
+            <h5 class=" p-2">{{message.content}}</h5>
+        </div>
+        {% empty %}
+        <p class="text-center">Currently you don't have any messages </p>
         {% endfor %}
-     <form method='POST'>{% csrf_token %} 
-    <div class="panel-footer">
-                    <div class="input-group">
-                        <input  type="textarea" name="content" id ="id_content "class=" p-4  mb-2 form-control input-lg chat_input " placeholder="Write your message here..." />
-                        <span class="input-group-btn">
+        <form method='POST'>{% csrf_token %}
+            <div class="panel-footer">
+                <div class="input-group">
+                    <input type="textarea" name="content" id="id_content " class=" p-4  mb-2 form-control input-lg chat_input " placeholder="Write your message here..." />
+                    <span class="input-group-btn">
                         <button class="btn btn-success  m-2 btn-lg"  type="submit">Send</button>
                         </span>
-                    </div>
                 </div>
-    </form>
-  </section>
+            </div>
+        </form>
+</section>
 
 
 {% include 'footer.html' %}
- <style>
- body{
-     background: -webkit-linear-gradient(left, #498b70, #458f4f);
- }
- section{
-     background:white;
- }
- </style>
- <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  
+<style>
+    body {
+        background: -webkit-linear-gradient(left, #498b70, #458f4f);
+    }
+    
+    section {
+        background: white;
+    }
+</style>

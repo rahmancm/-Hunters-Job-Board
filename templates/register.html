@@ -17,14 +17,14 @@
 
 <style>
   body {
-    overflow-x: hidden;
-    background:  -webkit-linear-gradient(left, #498b70, #458f4f);
+    
+    background:  white;
   }
 
  
   /* Navbar Components start*/
   navbar {
-    background-color: none;
+    background:-webkit-linear-gradient(left, #498b70, #458f4f);
   }
 
   #navbarSupportedContent {
@@ -52,28 +52,13 @@
   }
 
   /* Navbar Components End*/
-  div.signup {
-
-    margin-top: 3%;
-    margin-bottom: 10%;
-  }
-
-  div.signhead {
-    margin-top: 3%;
-  }
-
-  @media only screen and (min-width: 768px) {
-    div.signup {
-      width: 30%;
-    }
-  }
-</style>
+ </style>
 <!-- Custom styles for this template -->
 
 </head>
-
+<body>
 <!-- Navigation bar starts -->
-<nav class="navbar navbar-expand-lg  mx-auto ">
+<nav class="navbar navbar-expand-lg bg-success mx-auto ">
   <img class="navbar-brand"
           src="https://cdn.freebiesupply.com/logos/large/2x/employee-savings-1-logo-png-transparent.png" alt="comapny logop"
           width="70" height="70">
@@ -105,78 +90,91 @@
   </nav>
   <hr>
   
-<!-- Navigation bar ends -->
-<div class="col-12 col-sm-12 signhead ">
-  <h1 class="lead text-white font-weight-bolder text-center font-lg">Sign Up</h1>
-</div>
-<div class="container signup ">
 
-  <div class="col-sm-12 col-12 mb-5 ">
-    <form action="/register" method="POST">
-      <input type="hidden" name="csrfmiddlewaretoken"
-        value="5mGRdxZc5P98Xs5IwKbrtDk820HvLwF5Hu8KpNkS2fnCYJ1IPnshLmXBSpHtgjM5">
-      {% csrf_token %}
-      <div class="form-group">
-        <label class="control-label text-white text-center " for="id_first_name">First Name</label>
-        <div class=" ">
-          <input type="text" name="first_name" class=" form-control" required="" id="id_first_name">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label text-white text-center " for="id_last_name">Last Name</label>
-        <div class=" ">
-          <input type="text" name="last_name" class=" form-control" required="" id="id_last_name">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label  text-white text-center" for="id_username">Username</label>
-        <div class=" ">
-          <input type="text" name="username" maxlength="10" class=" form-control" required="" id="id_username">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label text-white text-center  " for="id_email">Email address</label>
-        <div class=" ">
-          <input type="email" name="email" placeholder="Enter a valid e-mail" class=" form-control" required=""
-            id="id_email">
-        </div>
-      </div>
-       <div class="form-group">
-       <label class="control-label text-white " for="id_gender">Account type</label>
-            <div class=" ">
-             <select name="account_type" class=" form-control" required="" id="account_type">
-                <option value="jobseeker" selected="">Job Seeker</option>
+
+
+
+
+
+<section class="section-content padding-y">
+
+    <!-- ============================ COMPONENT REGISTER   ================================= -->
+    <div class="card mx-auto" style="max-width:520px; margin-top:40px;">
+        <article class="card-body">
+            <header class="mb-4">
+                <h4 class="card-title">Sign up</h4>
+            </header>
+            <form action="register" method="POST"> {% csrf_token %} 
+                 <div class="form-row">
+                    <div class="col form-group">
+                        <label>First name</label>
+                        <input type="text" class="form-control" name="first_name" required="" placeholder="">
+                    </div>
+                    <!-- form-group end.// -->
+                    <div class="col form-group">
+                        <label>Last name</label>
+                        <input type="text" class="form-control" name="last_name" placeholder="">
+                    </div>
+                    <!-- form-group end.// -->
+                </div>
+                <!-- form-row end.// -->
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control" required="" placeholder="">
+
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control" name="email" required="" placeholder="">
+                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <!-- form-group end.// -->
+                <div class="form-group">
                 
-                <option value="employer">Employer</option>
-               
-              </select>
-            </div>
-      <div class="form-group">
-        <label class="control-label text-white text-center  " for="id_password">Password</label>
-        <div class=" ">
-          <input type="password" name="password" class=" form-control" required="" id="id_password">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label text-white text-center " for="id_confirm_password">Confirm password</label>
-        <div class=" ">
-          <input type="password" name="confirm_password" class=" form-control" required id="id_confirm_password">
-        </div>
+                    <label class="custom-control custom-radio custom-control-inline">
+					  <input class="custom-control-input" checked="" type="radio" name="account_type" value="jobseeker">
+					  <span class="custom-control-label"> Job Seeker </span>
+					</label>
+                    <label class="custom-control custom-radio custom-control-inline">
+					  <input class="custom-control-input" type="radio" name="account_type" value="employer">
+					  <span class="custom-control-label">Employer  </span>
+					</label>
+                </div>
+                <!-- form-group end.// -->
 
-      </div>
-      <div class="row form-group text-white text-center ">
-        <div class="col-md-12">
-          <button class="btn btn-warning  btn-lg text-white" type="submit" href="/login">Sign Up</button>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
-{% include 'footer.html' %}
-<!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Create password</label>
+                        <input class="form-control" type="password" name="password">
+                    </div>
+                    <!-- form-group end.// -->
+                    <div class="form-group col-md-6">
+                        <label>Repeat password</label>
+                        <input class="form-control" type="password" name="confirm_password">
+                    </div>
+                    <!-- form-group end.// -->
+                </div>
+                <div class="form-group">
+                    <button type="submit" href="/" class="btn btn-warning btn-block"> Register  </button>
+                </div>
+                <!-- form-group// -->
+                <div class="form-group">
+                    <label class="custom-control custom-checkbox"> <input type="checkbox" class="custom-control-input" checked=""> <div class="custom-control-label"> I am agree with <a href="#">terms and contitions</a>  </div> </label>
+                </div>
+                <!-- form-group end.// -->
+            </form>
+        </article>
+        <!-- card-body.// -->
+    </div>
+    <!-- card .// -->
+    <p class="text-center mt-4">Have an account? <a href="/login">Log In</a></p>
+    <br><br>
+    <!-- ============================ COMPONENT REGISTER  END.// ================================= -->
 
 
+</section>
 </body>
 
+
+{% include 'footer.html' %}
 </html>

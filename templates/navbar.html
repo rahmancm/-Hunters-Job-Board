@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hunters</title>
 
-    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/navbar.css' %}">
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -38,25 +38,25 @@
                     <a class="nav-link" href="/about"><i class="fa fa-fw fa-info"></i>About Us</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link " href="/services"><i class="fa fa-fw fa-info"></i>Services</a>
+                    <a class="nav-link " href="/services"><i class="fa fa-fw fa-bars"></i>Services</a>
 
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/contact"><i class="fa fa-fw fa-envelope"></i>Contact Us</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/notification"><i class="fa fa-fw fa-bell"></i>Notifications({{notifications.count}})</a>
+                <li class="nav-item float-right ">
+                    <a class="nav-link " href="/notification"><i class=" fa fa-fw fa-bell"></i>Notifications({{notifications.count}})</a>
                 </li>
                 <li class="nav-item dropdown ml-auto  ">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-fw fa-user"></i> My account
                     </a>
-                    <section class="dropdown-menu float-right " aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="/profile"><i class="fa fa-fw fa-user"></i> &nbsp;Profile</a>
+                    <section class="dropdown-menu my-2 float-right " aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item mt-2 " href="/profile"><i class="fa fa-fw fa-user"></i> &nbsp;Profile</a>
 
-                        <a class="dropdown-item" href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> &nbsp;Help</a>
+                        <a class="dropdown-item mt-2 " href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> &nbsp;Help</a>
 
-                        <a class="dropdown-item redbutton" href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp; Logout</a>
+                        <a class="dropdown-item redbutton mt-2" href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp; Logout</a>
 
                     </section>
                 </li>
@@ -77,23 +77,3 @@
 </body>
 
 </html>
-<style>
-    ul.navbar-nav {
-        margin-left: 15%;
-        width: 100%;
-    }
-    
-    #navbarDropdownMenuLink {
-        border: 3px solid white;
-        border-radius: 5px;
-    }
-    
-    .dropdown-item {
-        width: 100%;
-        border: 2px;
-    }
-    
-    .redbutton {
-        background-color: rgba(199, 54, 18, 0.623);
-    }
-</style>

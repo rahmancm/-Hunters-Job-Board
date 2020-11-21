@@ -13,6 +13,7 @@ from django.contrib.auth.decorators import login_required
 from home.utilities import create_notification
 from django.views.generic import  ListView
 from django.db.models import Q
+from django.views.decorators.csrf import csrf_protect
 
 
 # Create your views here.
@@ -50,6 +51,7 @@ def loginUser(request):
 def logoutUser(request):
     logout(request)
     return render(request,'login.html')
+csrf_protect    
 def register(request):
        if request.method == 'POST':
            first_name=request.POST["first_name"]
@@ -68,11 +70,11 @@ def register(request):
            else:
                userprofile=Userprofile.objects.create(user=user)
                userprofile.save()
-           return redirect('/login')
+           return redirect('/')
        else:  
            return render(request,'register.html')    
+csrf_protect
 
-# Create your views here.
 
 def post(request):  
     if request.method == "POST":  

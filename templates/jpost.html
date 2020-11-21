@@ -1,158 +1,234 @@
+
+
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=], initial-scale=1.0">
-  <title>Post Job</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <style>
-    body {
-      background:-webkit-linear-gradient(left, #498b70, #458f4f);
-    }
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Title Page-->
+    <title>Post a Job</title>
 
+    <!-- Icons font CSS-->
+    <link href="{% static '/vendor/mdi-font/css/material-design-iconic-font.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static '/vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    div.post {
-      width: 80%;
-    }
+    <!-- Vendor CSS-->
+    <link href="{% static '/vendor/select2/select2.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static '/vendor/datepicker/daterangepicker.css' %}" rel="stylesheet" media="all">
 
-   
-  </style>
+    <!-- Main CSS-->
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/jpost.css' %}" media="all">
+ 
 </head>
 
+
 <body>
-  <!-- Navigation bar starts -->
-  {% include "navbar.html" %}
-  <div class="container post my-4">
-    <div class="row justify-content-center">
-      <div class="col-lg-8 mb-5 mb-lg-0">
-        <center>
-          <h1 class="lead text-center font-weight-bold text-white">Post a Job</h1>
-        </center>
-        {% csrf_token %}
-        <form action="/postj" method="POST" class="" enctype="multipart/form-data">
-          {% csrf_token %}
-          <input type="hidden" name="csrfmiddlewaretoken"
-            value="5mGRdxZc5P98Xs5IwKbrtDk820HvLwF5Hu8KpNkS2fnCYJ1IPnshLmXBSpHtgjM5">
-          {% csrf_token %}
-          <div class="form-group">
-            <label class="control-label text-white " for="id_title">Title</label>
-            <div class=" ">
-              <input type="text" name="title" maxlength="100" placeholder="Software Engineer, Web Designer"
-                class=" form-control  " required="" id="id_title">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label text-white " for="id_company_name">Company name</label>
-            <div class=" ">
-              <input type="text" name="company_name" maxlength="200" class=" form-control" required=""
-                id="id_company_name">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label text-white " for="id_employment_status">Employment status</label>
-            <div class=" ">
-              <select name="employment_status" class=" form-control" required="" id="id_employment_status">
-                <option value="" selected="">---------</option>
-                <option value="Part Time">Part Time</option>
-                <option value="Full Time">Full Time</option>
-                <option value="Freelance">Freelancer</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label text-white " for="id_vacancy">Vacancy</label>
-            <div class=" ">
-              <input type="text" name="vacancy" maxlength="10" class=" form-control" required="" id="id_vacancy">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label text-white " for="id_gender">Gender</label>
-            <div class=" ">
-              <select name="gender" class=" form-control" required="" id="id_gender">
-                <option value="" selected="">---------</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Any">Any</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label text-white  " for="id_category">Category</label>
-            <div class=" ">
-              <select name="category" class=" form-control" required="" id="id_category">
-                <option value="" selected="">---------</option>
-                <option value="Web Design">Web Design</option>
-                <option value="Graphic Design">Graphic Design</option>
-                <option value="Web Developing">Web Developing</option>
-                <option value="Software Engineering">Software Engineering</option>
-                <option value="HR">HR</option>
-                <option value="Marketing">Marketing</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label text-white " for="id_description">Description</label>
-            <div class=" ">
-              <textarea name="description" cols="40" rows="10" class=" form-control" required=""
-                id="id_description"></textarea>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label text-white " for="id_responsibilities">Responsibilities</label>
-            <div class=" ">
-              <textarea name="responsibilities" cols="40" rows="10" class=" form-control" required=""
-                id="id_responsibilities"></textarea>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label text-white " for="id_experience">Experience</label>
-            <div class=" ">
-              <input type="text" name="experience" maxlength="100" class=" form-control" required="" id="id_experience">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label text-white " for="id_job_location">Job Location</label>
-            <div class=" ">
-              <input type="text" name="job_location" maxlength="120" placeholder="Enter your Locatiom"
-                class=" form-control" required="" id="id_job_location">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label text-white " for="id_Salary">Salary</label>
-            <div class=" ">
-              <input type="text" name="Salary" maxlength="100" placeholder="20k-80k BDT, 4k-5k USD, Negotiable"
-                class=" form-control" id="id_Salary">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label  text-white" for="id_application_deadline">Application deadline</label>
-            <div class=" ">
-              <input type="text" name="application_deadline" placeholder="YYYY-MM-DD" class=" form-control" required=""
-                id="id_application_deadline">
-            </div>
-          </div>
-          <div class="row form-group">
-            <div class="col-md-12 my-2">
-              <input type="submit" value="POST" class="btn btn-warning btn-lg text-center text-white">
-            </div>
-          </div>
+    <!-- Navigation bar starts -->
+  <nav class="navbar navbar-expand-lg  mx-auto text-center">
+        <img class="navbar-brand" src="https://cdn.freebiesupply.com/logos/large/2x/employee-savings-1-logo-png-transparent.png" alt="comapny logop" width="70" height="70">
+        <a class="navbar-brand" href="#">HUNTERS</a>
+
+        <button style="border-color:white;" id="navbarToggle" type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span style="color:white; " class="navbar-toggler-icon"></span>
+      </button>
+
+        <div class=" collapse navbar-collapse  navbar-main text-white" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto ">
+                <li class="nav-item active border-bottom-white">
+                    <a class="nav-link " href="/"><i class="fa fa-fw fa-home"></i>Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about"><i class="fa fa-fw fa-info"></i>About Us</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link " href="/services"><i class="fa fa-fw fa-bars"></i>Services</a>
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact"><i class="fa fa-fw fa-envelope"></i>Contact Us</a>
+                </li>
+                <li class="nav-item float-right ">
+                    <a class="nav-link " href="/notification"><i class=" fa fa-fw fa-bell"></i>Notifications({{notifications.count}})</a>
+                </li>
+                <li class="nav-item dropdown ml-auto  ">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-fw fa-user"></i> My account
+                    </a>
+                    <section class="dropdown-menu my-2 float-right " aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item mt-2 " href="/profile"><i class="fa fa-fw fa-user"></i> &nbsp;Profile</a>
+
+                        <a class="dropdown-item mt-2 " href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> &nbsp;Help</a>
+
+                        <a class="dropdown-item redbutton mt-2" href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp; Logout</a>
+
+                    </section>
+                </li>
+                <li class="nav-item logout ">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Navigation bar ends -->
+
+    <div class="page-wrapper bg-dark border p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title text-center ">Post a Job </h2>
+                    <form action="/postj" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="csrfmiddlewaretoken" value="5mGRdxZc5P98Xs5IwKbrtDk820HvLwF5Hu8KpNkS2fnCYJ1IPnshLmXBSpHtgjM5"> {% csrf_token %}
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Title</label>
+                                    <input class="input--style-4" type="text" name="title" maxlength="100" placeholder="Software Engineer, Web Designer" required="" id="id_title">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Company name</label>
+                                    <input class="input--style-4" type="text" name="company_name" maxlength="200" required="" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Employement Status</label>
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="employment_status">
+                                    <option disabled="disabled" selected="selected">Choose option</option>
+                                    <option value="Part Time">Part Time</option>
+                                    <option value="Full Time">Full Time</option>
+                                    <option value="Freelance">Freelancer</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="input-group">
+                                <label class="label">Vacancy</label>
+                                <input class="input--style-4" type="text" name="vacancy" maxlength="200" required="">
+                            </div>
+                        </div>
+
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Category</label>
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="category">
+                                        <option disabled="disabled" selected="selected">Choose option</option>
+                                        <option value="" selected="">---------</option>
+                                        <option value="Web Design">Web Design</option>
+                                        <option value="Graphic Design">Graphic Design</option>
+                                        <option value="Web Developing">Web Developing</option>
+                                        <option value="Software Engineering">Software Engineering</option>
+                                        <option value="HR">HR</option>
+                                        <option value="Marketing">Marketing</option>
+                                    </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Gender</label>
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="gender">
+                                        <option disabled="disabled" selected="selected">Choose option</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Any">Any</option>
+                                    </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-2">
+                            <div class="input-group">
+                                <label class="label">Description</label>
+                                <input class="input--style-4" type="text" name="description" height="90px" required="">
+                            </div>
+                        </div>
+
+                        <div class="col-2">
+                            <div class="input-group">
+                                <label class="label">Responsibilities</label>
+                                <input class="input--style-4" type="text" name="responsibilities" height="90px" required="">
+                            </div>
+                        </div>
 
 
-        </form>
-      </div>
+
+                        <div class="p-t-15">
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">Experience</label>
+                                        <input class="input--style-4" type="text" name="experience" required>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">Job Location</label>
+                                        <input class="input--style-4" type="text" name="job_location" maxlength="120" placeholder="Enter your Location" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">Salary</label>
+                                        <input class="input--style-4" type="text" name="Salary" maxlength="100" placeholder="20k-80k, 4k-5k USD, Negotiable" required>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">Application deadline</label>
+                                        <div class="input-group-icon">
+                                            <input class="input--style-4 js-datepicker" type="text" name="application_deadline">
+                                            <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 
-    </div>
 
-  </div>
-  {% include 'footer.html'%}
-  <!-- Optional JavaScript -->
-  <!-- this should go after your </body> -->
+                            <div class="p-t-15">
+                                <button class="btn btn--radius-2 btn--blue" value="POST" type="submit">Post</button>
+                            </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jquery JS-->
+        <script src="{% static '/vendor/jquery/jquery.min.js' %}"></script>
+        <!-- Vendor JS-->
+        <script src="{% static '/vendor/select2/select2.min.js' %}"></script>
+        <script src="{% static '/vendor/datepicker/moment.min.js' %}"></script>
+        <script src="{% static '/vendor/datepicker/daterangepicker.js' %}"></script>
+
+        <!-- Main JS-->
+        <script src="{% static '/js/global.js' %}"></script>
+
+
 
 </body>
 
+
 </html>
+<!-- end document-->
