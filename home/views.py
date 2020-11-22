@@ -19,7 +19,18 @@ from django.views.decorators.csrf import csrf_protect
 # Create your views here.
 def index(request):
     jobs=JobPosting.objects.all()
-   
+    if request.method == "POST":  
+        form = EmployeeForm(request.POST)  
+        if form.is_valid():  
+            try:  
+                job=form.save()
+                job.created_by = request.user
+                job.save()  
+                return redirect('/')  
+            except:  
+                pass  
+    else:  
+        form = EmployeeForm()  
     if request.user.is_anonymous :
        
         return redirect('/login')
@@ -76,20 +87,7 @@ def register(request):
 csrf_protect
 
 
-def post(request):  
-    if request.method == "POST":  
-        form = EmployeeForm(request.POST)  
-        if form.is_valid():  
-            try:  
-                job=form.save()
-                job.created_by = request.user
-                job.save()  
-                return redirect('/')  
-            except:  
-                pass  
-    else:  
-        form = EmployeeForm()  
-    return render(request,'jpost.html')
+
 def job_single(request, pk):
     
     q = JobPosting.objects.get(id=pk)
