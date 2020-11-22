@@ -10,7 +10,17 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Userprofile(models.Model):
     user = models.OneToOneField(User, related_name='userprofile', on_delete=models.CASCADE)
-    is_employer =models.BooleanField(default=False)
+    is_employer=models.BooleanField(default=False)
+    PhoneNumber=models.CharField(max_length=50, blank=True)
+    address=models.TextField()
+    education=models.TextField(max_length=50, blank=True)
+    profession=models.CharField(max_length=50, blank=True)
+    experiance=models.TextField(max_length=50, blank=True)
+    country=models.CharField(max_length=50, blank=True)
+    state=models.CharField(max_length=50, blank=True)
+    profile_pic=models.ImageField(upload_to="media/media",null=True,blank=True)
+    
+
   
 
     def __str__(self):

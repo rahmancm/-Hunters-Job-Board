@@ -138,21 +138,24 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt="" />
+                        <img src="{{user.userprofile.profile_pic.url}}" alt="profile pic" />
                         <div class="file btn btn-lg btn-primary">
-                            Change Photo
-                            <input type="file" name="file" />
+                            <form action="" method="POST" enctype="multipart/form-data">
+                                Change Photo
+                                <input type="file" name="profile_pic" />
+                                <input type="submit">
+                            </form>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="profile-head">
                         <h5>
-                            {{user.first_name}}&nbsp;{{user.last_name}}
+                            {{user.first_name}}&nbsp;{{request.user.last_name}}
                         </h5>
                         <h6>
 
-                            Web Developer and Designer {% if userprofile.is_employer %}
+                            {{request.user.userprofile.profession}} {% if userprofile.is_employer %}
                             <p class="pt-2"> <span class="badge badge-secondary px-2 py-1 mb-3">Signed in as Employer</span></p>
                             {% else%}
                             <p class="pt-2"> <span class="badge badge-secondary px-2 py-1 mb-3">Signed in as Employee</span></p>
@@ -171,10 +174,67 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
+                <div class="col-md-2 sm-hidden ">
+                    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">Edit Profile</button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header btn-success">
+                                    <h5 class="modal-title " id="exampleModalLabel">Edit Profile</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container rounded bg-white mt-2 mb-2">
+
+
+                                        <div class="col-12 border-right">
+                                            <div class="p-3 py-0">
+                                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                                    <h4 class="text-right">Profile Settings</h4>
+                                                </div>
+                                                <form action="" method="POST" enctype="multipart/form-data">
+                                                    <div class="row mt-2">
+
+                                                        <div class="col-md-6"><label class="labels">First Name</label><input type="text" class="form-control" name="first_name" value="{{user.first_name}}"></div>
+                                                        <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" name="last_name" value="{{user.last_name}}" placeholder="last name"></div>
+                                                    </div>
+                                                    <div class="row mt-3">
+                                                        <div class="col-md-6"><label class="labels">Username</label><input type="text" class="form-control" name="username" placeholder="Username" value="{{user.username}}"></div>
+                                                        <div class="col-md-6"><label class="labels">Email</label><input type="email" class="form-control" name="email" value="{{user.email}}" placeholder="Email"></div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col-md-12"><label class="labels">PhoneNumber</label><input type="text" class="form-control" name="PhoneNumber" placeholder="enter phone number" value="{{user.userprofile.PhoneNumber}}"></div>
+                                                        <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" name="address" placeholder="enter address" value="{{user.userprofile.address}}"></div>
+                                                        <div class="col-md-12"><label class="labels">Experiance</label><input type="text" class="form-control" name='experiance' placeholder="Enter Experiance" value="{{user.userprofile.experiance}}"></div>
+                                                        <div class="col-md-12"><label class="labels">Education</label><input type="text" class="form-control" name='education' placeholder="education" value="{{user.userprofile.education}}"></div>
+                                                        <div class="col-md-12"><label class="labels">Profession</label><input type="text" class="form-control" name="profession" placeholder="Profession" value="{{user.userprofile.profession}}"></div>
+                                                    </div>
+                                                    <div class="row mt-3">
+                                                        <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" name="country" placeholder="country" value="{{user.userprofile.country}}"></div>
+                                                        <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" name="state" value="{{user.userprofile.state}}" placeholder="state"></div>
+                                                    </div>
+                                                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
+
+
+
+
             <div class="row">
 
                 <div class="col-md-4">
@@ -224,7 +284,7 @@
                                     <label>Phone</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>{{request.user.userdetails.phone}}</p>
+                                    <p>{{request.user.userprofile.PhoneNumber}}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -232,9 +292,26 @@
                                     <label>Profession</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>Web Developer and Designer</p>
+                                    <p>{{request.user.userprofile.profession}}</p>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>State</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{request.user.userprofile.state}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Country</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{request.user.userprofile.country}}</p>
+                                </div>
+                            </div>
+
                         </div>
                         {% if not userprofile.is_employer %}
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -243,7 +320,7 @@
                                     <label>Experience</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>Expert</p>
+                                    <p>{{request.user.userprofile.experiance}}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -333,7 +410,7 @@
         </form>
     </div>
     {% include 'footer.html'%}
-   
+
 
 </body>
 
