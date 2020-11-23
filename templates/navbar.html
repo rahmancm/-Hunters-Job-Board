@@ -45,7 +45,7 @@
                     <a class="nav-link" href="/contact"><i class="fa fa-fw fa-envelope"></i>Contact Us</a>
                 </li>
                 <li class="nav-item float-right ">
-                    <a class="nav-link " href="/notification"><i class=" fa fa-fw fa-bell"></i>Notifications({{notifications.count}})</a>
+                    <a class="nav-link " data-toggle="modal" data-target="#myModal"><i class=" fa fa-fw fa-bell"></i>Notifications({{notifications.count}})</a>
                 </li>
                 <li class="nav-item dropdown ml-auto  ">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -74,6 +74,51 @@
             $('.collapse').collapse('hide');
         })
     </script>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal shadow-sm fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header py-1 bg-success">
+                    <h4 class="modal-title text-white  ">Notifications</h4>
+                    <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
+
+                </div>
+                <div class="modal-body">
+                    {% if not notifications %}
+                    <div class="container-fluid  text-center bg-light ">
+
+
+                       <strong> <p class="font"> You have no new notifications !!! </p> </strong>
+                    </div>
+                    {%endif%} {% for notification in notifications %} {% if notification.notification_type == 'message' %}
+                    <li class="list-unstyled py-1 text-center ">
+                        <a href="{% url 'notification' %}?goto=view_application&notification={{notification.id}}&extra_id={{notification.extra_id}}">
+                            <strong>{{notification.created_by.username}} </strong> sent you a message &nbsp; &nbsp;
+                            <small>{{notification.created_at|timesince}} ago</small></a>
+                    </li>
+                    {% elif notification.notification_type == 'application' %}
+                    <li class="list-unstyled py-1 text-center ">
+                        <a href="{% url 'notification' %}?goto=view_application&notification={{notification.id}}&extra_id={{notification.extra_id}}">
+                            <strong>{{notification.created_by.username}} </strong> applied for the job
+                            <small>{{notification.created_at|timesince}} ago</small></a>
+                    </li>
+
+                    {%endif%} {%endfor%}
+
+
+
+
+                    <div class="modal-footer py-0  ">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

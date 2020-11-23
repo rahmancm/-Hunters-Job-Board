@@ -138,7 +138,9 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
-                        <img src="{{user.userprofile.profile_pic.url}}" alt="profile pic" />
+                        {% if user.userprofile.profile_pic %}
+                        <img src="{{user.userprofile.profile_pic.url}}" alt="profile pic" /> {% else %}
+                        <img src="https://res.cloudinary.com/rahmancm/image/upload/v1605463542/jobportal/98082a6a-406d-47b7-93da-6e398765799f_1000x600-watermark_rk473m.png" alt="profile pic" /> {% endif %}
                         <div class="file btn btn-lg btn-primary">
                             <form action="" method="POST" enctype="multipart/form-data">
                                 Change Photo
@@ -175,7 +177,7 @@
                     </div>
                 </div>
                 <div class="col-md-2 sm-hidden ">
-                    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">Edit Profile</button>
+                    <button type="button" class="btn btn-primary btn-sm " data-toggle="modal" data-target="#exampleModal">Edit Profile</button>
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -237,9 +239,9 @@
 
             <div class="row">
 
-                <div class="col-md-4">
+                <div class="col-md-2  border rounded  mx-3 shadow-md ">
 
-                    <div class="profile-work sm-hidden ">
+                    <div class="profile-work d-none  d-md-block d-xl-block">
                         <p>WORK LINK</p>
                         <a href="">Website Link</a><br/>
                         <a href="">Bootsnipp Profile</a><br/>
@@ -256,58 +258,66 @@
                     <div class="tab-content profile-tab" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <label>User Id</label>
+                                <div class="col-sm-6">
+                                    <label>Username</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <p>{{user}}</p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <label>Name</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <p>{{user.first_name}}&nbsp;{{user.last_name}}</p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <label>Email</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <p>{{user.email}}</p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <label>Phone</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <p>{{request.user.userprofile.PhoneNumber}}</p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <label>Profession</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <p>{{request.user.userprofile.profession}}</p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
+                                    <label>Education</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p>{{request.user.userprofile.education}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
                                     <label>State</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <p>{{request.user.userprofile.state}}</p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <label>Country</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <p>{{request.user.userprofile.country}}</p>
                                 </div>
                             </div>
@@ -316,47 +326,47 @@
                         {% if not userprofile.is_employer %}
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <label>Experience</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <p>{{request.user.userprofile.experiance}}</p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <label>Hourly Rate</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <p>10$/hr</p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <label>Total Projects</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <p>230</p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <label>English Level</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <p>Expert</p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <label>Availability</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <p>6 months</p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-sm-12">
                                     <label>Your Bio</label><br/>
                                     <p>Your detail description</p>
 
