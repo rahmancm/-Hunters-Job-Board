@@ -395,16 +395,19 @@
                     <h3 class="mb-2"> <span class="badge badge-primary px-2 py-1 mb-3">Jobs that you have posted </span></h3>
                     <hr> {% for job in request.user.jobs.all%}
                     <div class="row border rounded  ">
-                        <div class="column col-sm-6 text-center ">
+                        <div class="column col-sm-5 text-left ">
                             <a href="{% url 'view_postedjob' job.id %}">
-                                <h6>{{job.title}}</h6>
+                                <h6 class="pb-1">{{job.title}}</h6>
                             </a>
                         </div>
-                        <div class="column col-sm-3  text-left ">
+                        <div class="column col-sm-5  text-left ">
                             <p><strong> Posted on:</strong> {{job.published_on|date}}</P>
                         </div>
-                        <div class="column col-sm-3  text-right ">
+                        <div class="column col-sm-1  text-right ">
                             <a class="btn btn-sm btn-secondary m-2 " href="{% url 'edit_job' job.id %}"> Update </a>
+                        </div>
+                        <div class="column col-sm-1  text-right ">
+                            <a class="btn btn-sm btn-danger m-2 " href="{% url 'delete_job' job.id %}"> Delete </a>
                         </div>
                     </div>
                     <hr> {% empty%}

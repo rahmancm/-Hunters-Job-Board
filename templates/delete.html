@@ -1,0 +1,48 @@
+{% include 'navbar.html' %}
+
+
+
+
+
+<div class="container m-auto p-auto pt-5 pb-5">
+    <form action="{% url 'delete_job' deleted.id %}" method="DELETE"> {% csrf_token %}
+        <div class="row  ">
+            <div class="column col-sm-6 text-left pt-5 pb-5">
+
+
+                <strong> Are you sude you want to delete "{{deleted.title}}" (This Cannot be be Undone)
+            </strong>
+
+            </div>
+
+            <div class="column col-sm-2  text-right   pt-5 pb-5">
+
+
+                <input class="btn btn-md btn-danger  " type="submit" value="Confirm">
+            </div>
+            <div class="column col-sm-2  text-right   pt-5 pb-5">
+                <a class="btn btn-md btn-secondary  " href="/profile"> Cancel </a>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% include 'footer.html' %}

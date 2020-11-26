@@ -53,6 +53,16 @@ def edit_job(request,pk):
         form = JobPostEditForm(instance=jobs)
     return render(request,'jobedit.html',{'form':form , 'jobs':jobs })
 
+
+def delete_job(request,pk):
+    del_job=JobPosting.objects.get(id=pk)
+    if request.method == "DELETE":
+        del_job.delete()
+        return redirect('/profile')
+
+    context={'deleted':del_job}
+    return render(request,'delete.html',context)
+    
 def loginUser(request):
     if request.method=="POST":
         username=request.POST.get('username')
