@@ -1,0 +1,93 @@
+{% include 'navbar.html' %}
+<div class="container ml-5 pt-5 pb-3 pl-2">
+    <h2>
+        Edit "{{jobs.title}}"
+    </h2>
+</div>
+<div class="container m-auto p-auto ">
+    <form id="contact-form" method="POST" role="form"> {% csrf_token %}
+        <div class="controls">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group"> <label for="id_title">Title*</label> <input id="id_title" type="text" name="title" class="form-control" value="{{jobs.title}}"> </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group"> <label for="id_company_name">Company name *</label> <input id="id_company_name" type="text" name="company_name" class="form-control" value="{{jobs.company_name}}"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group"> <label for="id_employment_status">Employment Status *</label> <select id="id_employment_status" name="employment_status" value="{{jobs.employment_status}}" class="form-control">
+                                             
+                                        <option value="Part Time">Part Time</option>
+                                        <option value="Full Time">Full Time</option>
+                                        <option value="Freelance">Freelancer</option>
+                                            </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group"> <label for="id_gender">Gender *</label> <select id="id_gender" name="gender" class="form-control" value="{{jobs.gender}}" required="required" />
+
+
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Any">Any</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group"> <label for="id_category">Category</label> <select id="id_category" name="category" class="form-control" value="{{jobs.category}}" data-error="Please specify your need." required="required">
+                                                 
+                                                
+                                             
+                                                <option value="Web Design">Web Design</option>
+                                                <option value="Graphic Design">Graphic Design</option>
+                                                <option value="Web Developing">Web Developing</option>
+                                                <option value="Software Engineering">Software Engineering</option>
+                                                <option value="HR">HR</option>
+                                                <option value="Marketing">Marketing</option>
+                                            </select>
+
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group"> <label for="id_vacancy">Vacancy</label> <input id="id_vacancy" type="text" name="vacancy" value="{{jobs.vacancy}}" class="form-control"> </div>
+                </div>
+
+            </div>
+            <div class=" row ">
+                <div class="col-sm-6 col-12 ">
+                    <div class="form-group "> <label for="id_description">Description*</label> <textarea id="id_description" name="description" class="form-control" value="" rows="4">{{jobs.description}}</textarea> </div>
+                </div>
+                <div class="col-sm-6 col-12 ">
+                    <div class="form-group "> <label for="id_responsibilities ">Responsibilities*</label> <textarea id="id_responsibilities" name="responsibilities" value="{{jobs.responsibilities}}" class="form-control " rows="4">{{jobs.responsibilities}}</textarea> </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-md-6 ">
+                    <div class="form-group "> <label for="id_job_location">Location *</label> <input id="id_job_location" type="text" name="job_location" class="form-control " value="{{jobs.job_location}}"></div>
+                </div>
+                <div class="col-md-6 ">
+                    <div class="form-group "> <label for="id_experience">Experiance *</label> <input id="id_experience" type="text" name="experience" class="form-control " value="{{jobs.experience}}"></div>
+                </div>
+
+            </div>
+            <div class="row ">
+                <div class="col-md-6 ">
+                    <div class="form-group "> <label for="id_Salary">Salary *</label> <input id="id_Salary" type="text" name="Salary" class="form-control " value="{{jobs.Salary}}"></div>
+                </div>
+                <div class="col-md-6 ">
+                    <div class="form-group "> <label for="id_application_deadline">Applicaton deadline*</label> <input id="id_application_deadline" type="text" name="application_deadline" class="form-control " value="{{jobs.application_deadline|date:" Y-m-d "}}"> </div>
+                </div>
+                <div class="col-md-12 "> <button type="submit" class="btn btn-success btn-send pt-2  btn-block" value="POST">Post</button></div>
+            </div>
+        </div>
+
+    </form>
+
+
+</div>
+<!-- /.row-->
+{% include 'footer.html' %}

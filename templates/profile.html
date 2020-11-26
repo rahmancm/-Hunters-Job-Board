@@ -141,14 +141,14 @@
 
 <body>
     {% include "navbar.html"%}
-    <div `class="container emp-profile">
+    <div class="container emp-profile ">
         <form method="post">
             {% csrf_token %}
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
                         {% if user.userprofile.profile_pic %}
-                        <img src="{{user.userprofile.profile_pic.url}}" alt="profile pic" class="rounded-circle" /> {% else %}
+                        <img src="{{user.userprofile.profile_pic.url}}" alt="profile pic" class=" rounded" /> {% else %}
                         <img src="https://res.cloudinary.com/rahmancm/image/upload/v1605463542/jobportal/98082a6a-406d-47b7-93da-6e398765799f_1000x600-watermark_rk473m.png" alt="profile pic" /> {% endif %}
                         <div class="file btn btn-lg btn-primary">
                             <form action="" method="POST" enctype="multipart/form-data">
@@ -187,7 +187,7 @@
                 </div>
                 <div class="col-md-2 sm-hidden ">
                     <button type="button" class="btn btn-primary btn-sm d-none d-sm-block d-md-block  d-xl-block " data-toggle="modal" data-target="#exampleModal"><i class="fa  fa-gear" >&nbsp; </i>Edit Profile</button>
-                    <i data-toggle="modal" data-target="#exampleModal" class="fa d-block fa-md text-right d-sm-none py-1 pr-3  d-md-none d-xl-none fa-edit">&nbsp;Edit Profile </i>
+                    <i data-toggle="modal" data-target="#exampleModal" class="fa d-block fa-md text-right d-sm-none py-1 pr-3 btn d-md-none d-xl-none fa-edit">&nbsp;Edit Profile </i>
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -400,8 +400,11 @@
                                 <h6>{{job.title}}</h6>
                             </a>
                         </div>
-                        <div class="column col-sm-3  text-right ">
+                        <div class="column col-sm-3  text-left ">
                             <p><strong> Posted on:</strong> {{job.published_on|date}}</P>
+                        </div>
+                        <div class="column col-sm-3  text-right ">
+                            <a class="btn btn-sm btn-secondary m-2 " href="{% url 'edit_job' job.id %}"> Update </a>
                         </div>
                     </div>
                     <hr> {% empty%}

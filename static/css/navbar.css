@@ -2,8 +2,8 @@
 
 /* Navbar Components start*/
 
-navbar {
-    background-color: none;
+nav {
+    background: -webkit-linear-gradient(left, #498b70, #458f4f);
 }
 
 div.navbar-main {
@@ -84,15 +84,18 @@ ul.navbar-nav {
 @media only screen and (max-width: 900px) {
     div.navbar-main {
         color: white;
-        text-align: center;
-        margin-left: 20%;
-        margin-right: 20%
+        margin-right: 25%;
+        margin-left: 25%;
+        margin-top: 20px;
     }
     .logout {
-        border: 1px solid rgb(88, 30, 30);
-        background: red;
         display: block;
-        width: auto;
+        border-radius: 5px;
+        border: 2px black solid;
+        margin: auto;
+        text-align: center;
+        margin-top: 10%;
+        background-color: rgb(240, 52, 52);
     }
     li.dropdown {
         display: none;

@@ -4,7 +4,7 @@ from .models import Application
 from .models import Userprofile
 from django.contrib.auth.models import User
 
-class EmployeeForm(forms.ModelForm):  
+class JobPostForm(forms.ModelForm):  
     class Meta:  
         model = JobPosting  
         fields = "__all__"  
@@ -21,3 +21,8 @@ class UserUpdateForm(forms.ModelForm):
     class Meta:
         model =User        
         fields =['first_name','last_name','username','email']
+class JobPostEditForm(forms.ModelForm):  
+    class Meta:  
+        model = JobPosting  
+        fields = ['title','company_name','employment_status','vacancy','gender','category','description','responsibilities',
+        'experience','job_location','Salary','application_deadline']          

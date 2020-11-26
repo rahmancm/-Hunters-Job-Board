@@ -37,22 +37,23 @@
                 <li class="nav-item   d-block  d-md-none d-xl-none">
                     <a class="nav-link" href="/profile"><i class="fa fa-fw fa-user"></i>Profile</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/about"><i class="fa fa-fw fa-info"></i>About Us</a>
-                </li>
                 <li class="nav-item ">
-                    <a class="nav-link " href="/services"><i class="fa fa-fw fa-bars"></i>Services</a>
+                    <a class="nav-link " href="#"><i class="fa fa-fw fa-bars"></i>Services</a>
 
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact"><i class="fa fa-fw fa-envelope"></i>Contact Us</a>
+                    <a class="nav-link" href="#"><i class="fa fa-fw fa-info"></i>About Us</a>
                 </li>
                 
-                <li class="nav-item float-right ">
-                    <a class="nav-link " data-toggle="modal" data-target="#myModal"><i class=" fa fa-fw fa-bell"></i>Notifications({{notifications.count}})</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa fa-fw fa-envelope"></i>Contact Us</a>
+                </li>
+
+                <li class="nav-item float-right  ">
+                    <a class="nav-link " href="#myModal"  data-toggle="modal" data-target="#myModal"><i class="fa fa-fw fa-bell"></i>Notifications({{notifications.count}})</a>
                 </li>
                 <li class="nav-item dropdown ml-auto  ">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
                         <i class="fa fa-fw fa-user"></i> My account
                     </a>
                     <section class="dropdown-menu my-2 float-right " aria-labelledby="navbarDropdownMenuLink">
@@ -64,19 +65,37 @@
 
                     </section>
                 </li>
-                <li class="nav-item logout ">
-                    <a class="nav-link" href="/logout">Logout</a>
+                <li class="nav-item logout  ">
+                    <a class="nav-link" href="/logout"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
                 </li>
             </ul>
         </div>
     </nav>
     <!-- Navigation bar ends -->
     <!-- Optional JavaScript -->
-    <hr>
+    <style>
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        
+        .dropdown-menu {
+            margin-top: 0;
+        }
+    </style>
+
     <script>
         $(document).on('click', function() {
             $('.collapse').collapse('hide');
         })
+
+        $(document).ready(function() {
+            $(".dropdown").hover(function() {
+                var dropdownMenu = $(this).children(".dropdown-menu");
+                if (dropdownMenu.is(":visible")) {
+                    dropdownMenu.parent().toggleClass("open");
+                }
+            });
+        });
     </script>
 
     <!-- Modal -->
@@ -95,7 +114,7 @@
                     <div class="container-fluid  text-center bg-light ">
 
 
-                       <strong> <p class="font"> You have no new notifications !!! </p> </strong>
+                        <strong> <p class="font"> You have no new notifications !!! </p> </strong>
                     </div>
                     {%endif%} {% for notification in notifications %} {% if notification.notification_type == 'message' %}
                     <li class="list-unstyled py-1 text-center ">

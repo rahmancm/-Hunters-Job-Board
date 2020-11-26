@@ -29,13 +29,16 @@
         .btn-success {
             margin-bottom: 100px;
         }
+        nav{
+            background:none !important ;
+        }
     </style>
 
 </head>
 
 <body>
 
-    {% include "navbar.html" %} {% if messages %} {% for message in messages %}
+    {% include "navbar.html" %} <hr> {% if messages %} {% for message in messages %}
     <div class="alert  alert-{{message.tags}} alert-dismissible fade show my-0" role="alert">
         <strong>{{ message }}</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -203,7 +206,7 @@
 
     </div>
     {% else%}
-    <div class="container-fluid text-center my-5 jumbotron bg-white  " id="postjob">
+    <div class="container-fluid text-center my-5 jumbotron bg-white  d-none d-sm-block d-md-block  d-xl-block " id="postjob">
 
     </div>
     {% endif %} {% for job in jobs%}

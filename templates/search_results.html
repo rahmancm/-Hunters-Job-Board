@@ -6,7 +6,9 @@
 
 <div class="jumbotron border-0 ">
 <h3>Search Results...</h3>
-
+{%if not object_list  %}
+  <p class="text-center font-weight-bold" >Uh Uh.. No results found !!! </p>
+  {% endif %}
 <ul class="list-unstyled search ">
   {% for job in object_list %}
     <li class=" p-1" >

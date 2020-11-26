@@ -5,7 +5,7 @@ from django.contrib.auth import logout
 
 from home.models import JobPosting ,Application ,ConversationMessage
 from django.shortcuts import render, redirect  , get_object_or_404
-from .forms import EmployeeForm, ApplicationForm,UserprofileForm,UserUpdateForm
+from .forms import JobPostForm, ApplicationForm,UserprofileForm,UserUpdateForm,JobPostEditForm
 from .models import JobPosting ,Userprofile ,Notification
 from django.urls import reverse
 from django.contrib import messages
@@ -20,7 +20,7 @@ from django.views.decorators.csrf import csrf_protect
 def index(request):
     jobs=JobPosting.objects.all()
     if request.method == "POST":
-        form = EmployeeForm(request.POST)
+        form = JobPostForm(request.POST)
         if form.is_valid():
             try:
                 job=form.save()
@@ -30,7 +30,7 @@ def index(request):
             except:
                 pass
     else:
-        form = EmployeeForm()
+        form = JobPostForm()
     if request.user.is_anonymous :
 
         return redirect('/login')
@@ -38,6 +38,20 @@ def index(request):
 
     return render(request,'index.html',{'jobs':jobs,
                       'userprofile':request.user.userprofile  })
+
+def edit_job(request,pk):
+    jobs=get_object_or_404(JobPosting,id=pk, created_by=request.user)
+    if request.method == "POST":
+        form = JobPostEditForm(request.POST,instance=jobs)
+        if form.is_valid():
+           jobs=form.save(commit=False)
+           jobs.created_by=request.user
+           jobs.save()
+           return redirect('/profile')
+           
+    else:
+        form = JobPostEditForm(instance=jobs)
+    return render(request,'jobedit.html',{'form':form , 'jobs':jobs })
 
 def loginUser(request):
     if request.method=="POST":
@@ -96,7 +110,7 @@ def job_single(request, pk):
     return render(request, "job_single.html",context)
 @login_required
 def profile(request):
-    
+       
       userdetails=Userprofile.objects.all()
       jobs=JobPosting.objects.all()
       if request.method == "POST":
@@ -141,8 +155,13 @@ def view_application(request,app_id):
         content= request.POST.get('content')
         if content:
             conversationmessage= ConversationMessage.objects.create(application=application,content=content, created_by= request.user)
-            create_notification(request , to_user=application.created_by ,notification_type='message', extra_id=application.id)
-            return redirect ('view_application',app_id=app_id)
+            if request.user.userprofile.is_employer:
+                 to_user = application.created_by
+                 create_notification(request,to_user,notification_type='message', extra_id=application.id)
+            else:
+                 to_user = application.created_by
+                 create_notification(request,to_user,notification_type='message', extra_id=application.id)
+        return redirect ('view_application',app_id=app_id)
     return render(request,'viewapplication.html',{'application':application})
 
 
