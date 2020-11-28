@@ -1,44 +1,75 @@
+ {% include 'navbar.html' %}
+<hr>
+<div class="row align-items-center justify-content-center m-auto">
+    <div class="col-md-12">
+
+        <form id="job-main-form" method="get" action="{% url 'search_results' %}" class="search-jobs-form">
+            {% csrf_token %}
+            <div class="row mb-5">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                    <input type="text" id="title" name="title" class="form-control " placeholder=" Software Engineer ... " Required>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                    <input type="text" id="job_location" name="job_location" class="form-control " placeholder="Location">
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                    <select id="employment_status" name="employment_status" class="form-control">
+                <option value="Part Time">Part Time</option>
+                <option value="Full Time">Full Time</option>
+                <option value="Freelance">Freelancer</option>
+              </select>
+                </div>
 
 
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                    <button type="submit" class="btn btn-warning  btn-block text-white btn-search">
+                <span class="icon-search icon mr-2"></span>Search Job
+              </button>
+                </div>
+            </div>
+        </form>
 
-
-{% include 'navbar.html' %}
+    </div>
+</div>
 
 <div class="jumbotron border-0 ">
-<h3>Search Results...</h3>
-{%if not object_list  %}
-  <p class="text-center font-weight-bold" >Uh Uh.. No results found !!! </p>
-  {% endif %}
-<ul class="list-unstyled search ">
-  {% for job in object_list %}
-    <li class=" p-1" >
-    <a href="{% url 'job_single' job.id %}" > <strong> {{ job.title }}  </strong></a> &nbsp &nbsp {{ job.job_location }}&nbsp &nbsp <span class="badge badge-secondary px-2 py-1 mb-3">
+    <h3>Search Results...</h3>
+    {%if not object_list %}
+    <p class="text-center font-weight-bold">Uh Uh.. No results found !!! </p>
+    {% endif %}
+    <ul class="list-unstyled search ">
+        {% for job in object_list %}
+        <li class=" p-1">
+            <a href="{% url 'job_single' job.id %}"> <strong> {{ job.title }}  </strong></a> &nbsp &nbsp {{ job.job_location }}&nbsp &nbsp <span class="badge badge-secondary px-2 py-1 mb-3">
               {{job.employment_status}}
-            </span> <br>
-     Category: &nbsp  <strong> {{job.category}} </strong>&nbsp &nbsp Salary:{{ job.Salary }} <hr>
-    </li>
-    
-    
-  {% endfor %}
- 
-</ul>
+            </span> <br> Category: &nbsp <strong> {{job.category}} </strong>&nbsp &nbsp Salary:{{ job.Salary }}
+            <hr>
+        </li>
+
+
+        {% endfor %}
+
+    </ul>
 
 </div>
 
 {% include 'footer.html' %}
 <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
- <style>
- body{
-     background: -webkit-linear-gradient(left, #498b70, #458f4f);
- }
-.jumbotron{
-    padding-left:10%;
-    background:white;
-    border-radius:0px;
-}
-ul.search{
-    font-size:20px;
-}
+<style>
+    body {
+        background: -webkit-linear-gradient(left, #498b70, #458f4f);
+    }
+    
+    .jumbotron {
+        padding-left: 10%;
+        background: white;
+        border-radius: 0px;
+    }
+    
+    ul.search {
+        font-size: 20px;
+    }
 </style>

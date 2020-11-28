@@ -63,7 +63,6 @@ div.footer {
 }
 
 ul.navbar-nav {
-    margin-left: 15%;
     width: 100%;
 }
 
@@ -82,16 +81,15 @@ ul.navbar-nav {
 }
 
 @media only screen and (max-width: 900px) {
-    div.navbar-main {
+    div nav {
         color: white;
-        margin-right: 25%;
-        margin-left: 25%;
-        margin-top: 20px;
+        margin-left: 0px !important;
+        padding-left: 0px !important;
+        background-color: rgba(0, 0, 0, 0.404);
     }
     .logout {
         display: block;
         border-radius: 5px;
-        border: 2px black solid;
         margin: auto;
         text-align: center;
         margin-top: 10%;
@@ -101,6 +99,8 @@ ul.navbar-nav {
         display: none;
     }
 }
+
+@media (min-width: 768px) {}
 
 
 /*!

@@ -47,7 +47,9 @@ def edit_job(request,pk):
            jobs=form.save(commit=False)
            jobs.created_by=request.user
            jobs.save()
+           messages.success(request, 'Job details has been updated .')
            return redirect('/profile')
+                       
            
     else:
         form = JobPostEditForm(instance=jobs)
@@ -56,11 +58,17 @@ def edit_job(request,pk):
 
 def delete_job(request,pk):
     del_job=JobPosting.objects.get(id=pk)
-    if request.method == "DELETE":
-        del_job.delete()
+    if request.method == "POST":
+        
+        del_job=get_object_or_404(JobPosting,id=pk,created_by=request.user)
+        try:
+            del_job.save()
+            messages.success(request, 'The Job has been Deleted Succesfully.')
+        except:
+            pass
         return redirect('/profile')
-
-    context={'deleted':del_job}
+       
+    context={'del_job':del_job}
     return render(request,'delete.html',context)
     
 def loginUser(request):
@@ -125,15 +133,16 @@ def profile(request):
       jobs=JobPosting.objects.all()
       if request.method == "POST":
            
-           form = UserprofileForm(request.POST,instance=request.user.userprofile)
+           form = UserprofileForm(request.POST,request.FILES,instance=request.user.userprofile)
            u_form = UserUpdateForm(request.POST,instance=request.user)
            if form.is_valid() and u_form.is_valid():
                  u_form.save()
                  form.save()
+                 messages.success(request, 'Profile details has been updated.')
            else:
                 form = UserprofileForm(request.POST,instance=request.user.userprofile)
                 u_form=UserUpdateForm(request.POST,instance=request.user) 
-      context={'userdetails':userdetails,'userprofile':request.user.userprofile}           
+      context={'userdetails':userdetails,'userprofile':request.user.userprofile,'jobs':jobs}           
       return render(request,'profile.html',context)         
 @login_required
 def apply_for_job(request,pk):

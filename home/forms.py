@@ -25,4 +25,5 @@ class JobPostEditForm(forms.ModelForm):
     class Meta:  
         model = JobPosting  
         fields = ['title','company_name','employment_status','vacancy','gender','category','description','responsibilities',
-        'experience','job_location','Salary','application_deadline']          
+        'experience','job_location','Salary','application_deadline']    
+

@@ -9,7 +9,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+ 
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+
 
     <title>Login</title>
   </head>
@@ -82,15 +91,20 @@ body {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
         }
+        #navbarCollapse {
+        margin-left:22%;
+    
+       
+    } 
       }
 
       /* Navbar Components start*/ 
     navbar{
       background-color: none;
     } 
-    #navbarSupportedContent {
+    #navbarCollapse {
       color: white;
-      margin-left: 360px;
+      
     } 
     li a{
       color: white;
@@ -121,15 +135,15 @@ body {
   </head>
   <body>
     <!-- Navigation bar starts -->
-    <nav class="navbar navbar-expand-lg  mx-auto ">
+    <nav class="navbar navbar-expand-lg justify-center  ">
      <img src="https://res.cloudinary.com/rahmancm/image/upload/v1605434280/jobportal/download-removebg-preview_u2isyv.png" alt="comapny logop"
           width="70" height="70">
       <a class="navbar-brand " href="#"> HUNTERS</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <button  id="navbarToggle" type="button" class="navbar-toggler btn " data-toggle="collapse" data-target="#navbarCollapse">
+          <span  class=" text-white fa fa-bars"></span>
       </button>
     
-      <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse text-white" id="navbarCollapse">
         <ul class="navbar-nav mr-auto ">
           <li class="nav-item active">
             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
@@ -185,10 +199,8 @@ body {
       <div class="row align-items-center">
           <div class="col-md-8">
               <h2 class="text-black">Looking For A Job?</h2>
-              <p class="mb-0 text-black lead">Lorem ipsum dolor sit amet consectetur adipisicing elit tempora
-                  adipisci
-                  impedit.</p>
-              <p></p>
+              <p class="mb-0 text-black  font-weight-bolder lead">Find the best Startup Jobs by registering with us </p>
+              <p  class="  mt-5 font-weight-bolder">"In the middle of difficulty lies opportunity." —Albert Einstein</p>
           </div>
           <div class="col-md-3 ml-auto">
               <a href="register" class="btn btn-warning btn-block btn-lg">Sign Up</a>

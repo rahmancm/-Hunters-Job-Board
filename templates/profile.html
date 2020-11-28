@@ -140,300 +140,310 @@
 </head>
 
 <body>
-    {% include "navbar.html"%}
-    <div class="container emp-profile ">
-        <form method="post">
-            {% csrf_token %}
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="profile-img">
-                        {% if user.userprofile.profile_pic %}
-                        <img src="{{user.userprofile.profile_pic.url}}" alt="profile pic" class=" rounded" /> {% else %}
-                        <img src="https://res.cloudinary.com/rahmancm/image/upload/v1605463542/jobportal/98082a6a-406d-47b7-93da-6e398765799f_1000x600-watermark_rk473m.png" alt="profile pic" /> {% endif %}
-                        <div class="file btn btn-lg btn-primary">
-                            <form action="" method="POST" enctype="multipart/form-data">
-                                Change Photo
-                                <input type="file" name="profile_pic" />
-                                <input type="submit">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="profile-head">
-                        <h5>
-                            {{user.first_name}}&nbsp;{{request.user.last_name}}
-                        </h5>
-                        <h6>
+    {% include "navbar.html"%} {% if messages %} {% for message in messages %}
+    <div class="mb-5 alert {{ message.tags }} alert-success alert-dismissible pl-5 " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button> <em> <strong>{{ message }}</strong></em>
+    </div>
+    {% endfor %} {% endif %}
 
-                            {{request.user.userprofile.profession}} {% if userprofile.is_employer %}
-                            <p class="pt-2"> <span class="badge badge-secondary px-2 py-1 mb-3">Signed in as Employer</span></p>
-                            {% else%}
-                            <p class="pt-2"> <span class="badge badge-secondary px-2 py-1 mb-3">Signed in as Employee</span></p>
-                            {% endif %}
-                        </h6>
-                        <p class="proile-rating">RANKINGS : <span>8/10</span></p>
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-                            </li>
-                            {% if not userprofile.is_employer %}
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
-                            </li>
-                            {% endif %}
-                        </ul>
+
+    <div class="container emp-profile ">
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    {% if user.userprofile.profile_pic %}
+                    <img src="{{user.userprofile.profile_pic.url}}" alt="profile pic" class=" rounded-circle" /> {% else %}
+                    <img src="https://res.cloudinary.com/rahmancm/image/upload/v1605463542/jobportal/98082a6a-406d-47b7-93da-6e398765799f_1000x600-watermark_rk473m.png" alt="profile pic" /> {% endif %}
+                    <div class="">
+                        <form action="{% url 'profile' %}" method="POST" enctype="multipart/form-data"> {%csrf_token%}
+
+                        </form>
                     </div>
                 </div>
-                <div class="col-md-2 sm-hidden ">
-                    <button type="button" class="btn btn-primary btn-sm d-none d-sm-block d-md-block  d-xl-block " data-toggle="modal" data-target="#exampleModal"><i class="fa  fa-gear" >&nbsp; </i>Edit Profile</button>
-                    <i data-toggle="modal" data-target="#exampleModal" class="fa d-block fa-md text-right d-sm-none py-1 pr-3 btn d-md-none d-xl-none fa-edit">&nbsp;Edit Profile </i>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header btn-success">
-                                    <h5 class="modal-title " id="exampleModalLabel"><i class="fa  fa-gear">&nbsp; </i>Edit Profile</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <h5>
+                        {{user.first_name}}&nbsp;{{request.user.last_name}}
+                    </h5>
+                    <h6>
+
+                        {{request.user.userprofile.profession}} {% if userprofile.is_employer %}
+                        <p class="pt-2"> <span class="badge badge-secondary px-2 py-1 mb-3">Signed in as Employer</span></p>
+                        {% else%}
+                        <p class="pt-2"> <span class="badge badge-secondary px-2 py-1 mb-3">Signed in as Employee</span></p>
+                        {% endif %}
+                    </h6>
+                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                        </li>
+                        {% if not userprofile.is_employer %}
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2 sm-hidden ">
+                <button type="button" class="btn btn-primary btn-sm d-none d-sm-block d-md-block  d-xl-block " data-toggle="modal" data-target="#exampleModal"><i class="fa  fa-gear" >&nbsp; </i>Edit Profile</button>
+                <i data-toggle="modal" data-target="#exampleModal" class="fa d-block fa-md text-right d-sm-none py-1 pr-3 btn d-md-none d-xl-none fa-edit">&nbsp;Edit Profile </i>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header btn-success">
+                                <h5 class="modal-title " id="exampleModalLabel"><i class="fa  fa-gear">&nbsp; </i>Edit Profile</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container rounded bg-white mt-2 mb-2">
+                            </div>
+                            <div class="modal-body">
+                                <div class="container rounded bg-white mt-2 mb-2">
 
 
-                                        <div class="col-12 border-right">
-                                            <div class="p-3 py-0">
-                                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                                    <h4 class="text-right">Profile Settings</h4>
-                                                </div>
-                                                <form action="" method="POST" enctype="multipart/form-data">
-                                                    <div class="row mt-2">
-
-                                                        <div class="col-md-6"><label class="labels">First Name</label><input type="text" class="form-control" name="first_name" value="{{user.first_name}}"></div>
-                                                        <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" name="last_name" value="{{user.last_name}}" placeholder="last name"></div>
-                                                    </div>
-                                                    <div class="row mt-3">
-                                                        <div class="col-md-6"><label class="labels">Username</label><input type="text" class="form-control" name="username" placeholder="Username" value="{{user.username}}"></div>
-                                                        <div class="col-md-6"><label class="labels">Email</label><input type="email" class="form-control" name="email" value="{{user.email}}" placeholder="Email"></div>
-                                                    </div>
-                                                    <div class="row mt-2">
-                                                        <div class="col-md-12"><label class="labels">PhoneNumber</label><input type="text" class="form-control" name="PhoneNumber" placeholder="enter phone number" value="{{user.userprofile.PhoneNumber}}"></div>
-                                                        <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" name="address" placeholder="enter address" value="{{user.userprofile.address}}"></div>
-                                                        <div class="col-md-12"><label class="labels">Experiance</label><input type="text" class="form-control" name='experiance' placeholder="Enter Experiance" value="{{user.userprofile.experiance}}"></div>
-                                                        <div class="col-md-12"><label class="labels">Education</label><input type="text" class="form-control" name='education' placeholder="education" value="{{user.userprofile.education}}"></div>
-                                                        <div class="col-md-12"><label class="labels">Profession</label><input type="text" class="form-control" name="profession" placeholder="Profession" value="{{user.userprofile.profession}}"></div>
-                                                    </div>
-                                                    <div class="row mt-3">
-                                                        <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" name="country" placeholder="country" value="{{user.userprofile.country}}"></div>
-                                                        <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" name="state" value="{{user.userprofile.state}}" placeholder="state"></div>
-                                                    </div>
-                                                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
-                                                </form>
+                                    <div class="col-12 border-right">
+                                        <div class="p-3 py-0">
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <h4 class="text-right">Profile Settings</h4>
                                             </div>
+                                            <form action="" method="POST" enctype="multipart/form-data">
+                                                <div class="row mt-2">
+
+                                                    <div class="col-md-6"><label class="labels">First Name</label><input type="text" class="form-control" name="first_name" value="{{user.first_name}}"></div>
+                                                    <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" name="last_name" value="{{user.last_name}}" placeholder="last name"></div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-md-6"><label class="labels">Username</label><input type="text" class="form-control" name="username" placeholder="Username" value="{{user.username}}"></div>
+                                                    <div class="col-md-6"><label class="labels">Email</label><input type="email" class="form-control" name="email" value="{{user.email}}" placeholder="Email"></div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="col-md-12"><label class="labels">PhoneNumber</label><input type="text" class="form-control" name="PhoneNumber" placeholder="enter phone number" value="{{user.userprofile.PhoneNumber}}"></div>
+                                                    <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" name="address" placeholder="enter address" value="{{user.userprofile.address}}"></div>
+                                                    <div class="col-md-12"><label class="labels">Experiance</label><input type="text" class="form-control" name='experiance' placeholder="Enter Experiance" value="{{user.userprofile.experiance}}"></div>
+                                                    <div class="col-md-12"><label class="labels">Education</label><input type="text" class="form-control" name='education' placeholder="education" value="{{user.userprofile.education}}"></div>
+                                                    <div class="col-md-12"><label class="labels">Profession</label><input type="text" class="form-control" name="profession" placeholder="Profession" value="{{user.userprofile.profession}}"></div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" name="country" placeholder="country" value="{{user.userprofile.country}}"></div>
+                                                    <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" name="state" value="{{user.userprofile.state}}" placeholder="state"></div>
+                                                </div>
+                                                <div class="row mt-2 mb-2">
+
+                                                    <div class="col-md-12"><label class="labels"> Change Profile Picture</label><input type="file" class="form-control" name="profile_pic"></div>
+                                                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+                                                </div>
+                                            </form>
                                         </div>
-
                                     </div>
+
                                 </div>
                             </div>
-
-
-
                         </div>
-                    </div>
-
-                </div>
-            </div>
 
 
 
-
-            <div class="row ml-2">
-
-                <div class="col-md-3  border rounded  ml-3 shadow-md ">
-
-                    <div class="profile-work d-none  d-md-block d-xl-block">
-                        <p>WORK LINK</p>
-                        <a href="">Website Link</a><br/>
-                        <a href="">Bootsnipp Profile</a><br/>
-                        <a href="">Bootply Profile</a>
-                        <p>SKILLS</p>
-                        <a href="">Web Designer</a><br/>
-                        <a href="">Web Developer</a><br/>
-                        <a href="">WordPress</a><br/>
-                        <a href="">WooCommerce</a><br/>
-                        <a href="">PHP, .Net</a><br/>
                     </div>
                 </div>
-                <div class="col-md-5">
-                    <div class="tab-content profile-tab" id="myTabContent">
-                        <div class="tab-pane fade show active  " id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <div class="row ">
-                                <div class="col-md-6  ">
-                                    <label>Username</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{user}}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6  ">
-                                    <label>Name</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{user.first_name}}&nbsp;{{user.last_name}}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Email</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{user.email}}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Phone</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{request.user.userprofile.PhoneNumber}}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Profession</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{request.user.userprofile.profession}}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Education</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{request.user.userprofile.education}}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>State</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{request.user.userprofile.state}}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Country</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{request.user.userprofile.country}}</p>
-                                </div>
-                            </div>
 
-                        </div>
-                        {% if not userprofile.is_employer %}
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Experience</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{request.user.userprofile.experiance}}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Hourly Rate</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>10$/hr</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Total Projects</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>230</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>English Level</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>Expert</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Availability</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>6 months</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>Your Bio</label><br/>
-                                    <p>Your detail description</p>
+            </div>
+        </div>
 
 
 
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                    </div>
+
+        <div class="row ml-2">
+
+            <div class="col-md-3  border rounded  ml-3 shadow-md ">
+
+                <div class="profile-work d-none  d-md-block d-xl-block">
+                    <p>WORK LINK</p>
+                    <a href="">Website Link</a><br/>
+                    <a href="">Bootsnipp Profile</a><br/>
+                    <a href="">Bootply Profile</a>
+                    <p>SKILLS</p>
+                    <a href="">Web Designer</a><br/>
+                    <a href="">Web Developer</a><br/>
+                    <a href="">WordPress</a><br/>
+                    <a href="">WooCommerce</a><br/>
+                    <a href="">PHP, .Net</a><br/>
                 </div>
             </div>
-            <div class="container text-center">
+            <div class="col-md-5">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active  " id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row ">
+                            <div class="col-md-6  ">
+                                <label>Username</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{user}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6  ">
+                                <label>Name</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{user.first_name}}&nbsp;{{user.last_name}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{user.email}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Phone</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{request.user.userprofile.PhoneNumber}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Profession</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{request.user.userprofile.profession}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Education</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{request.user.userprofile.education}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>State</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{request.user.userprofile.state}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Country</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{request.user.userprofile.country}}</p>
+                            </div>
+                        </div>
 
-                <p>{% if userprofile.is_employer %}
-                    <h3 class="mb-2"> <span class="badge badge-primary px-2 py-1 mb-3">Jobs that you have posted </span></h3>
-                    <hr> {% for job in request.user.jobs.all%}
-                    <div class="row border rounded  ">
-                        <div class="column col-sm-5 text-left ">
-                            <a href="{% url 'view_postedjob' job.id %}">
-                                <h6 class="pb-1">{{job.title}}</h6>
-                            </a>
+                    </div>
+                    {% if not userprofile.is_employer %}
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Experience</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{request.user.userprofile.experiance}}</p>
+                            </div>
                         </div>
-                        <div class="column col-sm-5  text-left ">
-                            <p><strong> Posted on:</strong> {{job.published_on|date}}</P>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Hourly Rate</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>10$/hr</p>
+                            </div>
                         </div>
-                        <div class="column col-sm-1  text-right ">
-                            <a class="btn btn-sm btn-secondary m-2 " href="{% url 'edit_job' job.id %}"> Update </a>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Total Projects</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>230</p>
+                            </div>
                         </div>
-                        <div class="column col-sm-1  text-right ">
-                            <a class="btn btn-sm btn-danger m-2 " href="{% url 'delete_job' job.id %}"> Delete </a>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>English Level</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Expert</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Availability</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>6 months</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Your Bio</label><br/>
+                                <p>Your detail description</p>
+
+
+
+                            </div>
                         </div>
                     </div>
-                    <hr> {% empty%}
-                    <p>You haven't posted any Jobs yet</p>
-                    {% endfor %} {% else%}
-                    <h3> <span class="badge badge-primary ">Jobs that you have applied</span> </h3>
-
-                    <hr> {% for application in request.user.applications.all%}
-                    <div class="row border rounded  mb-2 ">
-                        <div class="column col-sm-6 text-center ">
-                            <a href="{%  url 'view_application' application.id %}">
-                                <h6>{{application.job.title}}</h6>
-                            </a>
-                            <br>
-                            <p>Category:{{application.job.category}}</p>
-                        </div>
-                        <div class="column col-sm-6  text-left ">
-                            <p><strong> Content : </strong>{{application.content}} </P>
-                            <p><strong> Experiance  : </strong> {{application.experiance}} </P>
-                        </div>
-                    </div>
-                    {% empty%}
-                    <p>You haven't applied any Jobs yet</p>
-                    <hr> {% endfor %} {% endif %} </p>
+                    {% endif %}
+                </div>
             </div>
-        </form>
+        </div>
+        <div class="container text-center">
+
+            <p>{% if userprofile.is_employer %}
+                <h2 class="mb-2  mt-3 text-left"> Jobs that you have posted </h2>
+
+                <hr> {% for job in request.user.jobs.all%}
+                <div class="row border rounded  ">
+                    <div class="column col-sm-5 text-left ">
+                        <a href="{% url 'view_postedjob' job.id %}">
+                            <h6 class="pb-1">{{job.title}}</h6>
+                        </a>
+                    </div>
+                    <div class="column col-sm-5  text-left ">
+                        <p><strong> Posted on:</strong> {{job.published_on|date}}</P>
+                    </div>
+                    <div class="column col-sm-1  text-right ">
+                        <a class="btn btn-sm btn-secondary m-2 " href="{% url 'edit_job' job.id %}"> Update </a>
+                    </div>
+                    <div class="column col-sm-1  text-right ">
+                        <a class="btn btn-sm btn-danger m-2 " href='{% url "delete_job" job.id %}'> Delete </a>
+                    </div>
+                </div>
+                <hr> {% empty%}
+                <p>You haven't posted any Jobs yet</p>
+                {% endfor %} {% else%}
+                <h2 class="text-left"> Jobs that you have applied </h2>
+
+                <hr> {% for application in request.user.applications.all%}
+                <div class="row border rounded  mb-2 ">
+                    <div class="column col-sm-6 text-center ">
+                        <a href="{%  url 'view_application' application.id %}">
+                            <h6>{{application.job.title}}</h6>
+                        </a>
+                        <br>
+                        <p>Category:{{application.job.category}}</p>
+                    </div>
+                    <div class="column col-sm-6  text-left ">
+                        <p><strong> Content : </strong>{{application.content}} </P>
+                        <p><strong> Experiance  : </strong> {{application.experiance}} </P>
+                    </div>
+                </div>
+                {% empty%}
+                <p>You haven't applied any Jobs yet</p>
+                <hr> {% endfor %} {% endif %} </p>
+        </div>
+
     </div>
     {% include 'footer.html'%}
 
