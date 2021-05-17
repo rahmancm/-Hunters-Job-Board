@@ -1,7 +1,7 @@
 <snippet>
   <content><![CDATA[
 
-# Project Name:
+## Project Name:
 Job Portal (Hunters)
 
 ## Installation
