@@ -1,8 +1,8 @@
 <snippet>
   <content><![CDATA[
 
-# ${1:Project Name}
-Job Portal 
+# Project Name:
+Job Portal (Hunters)
 
 ## Installation
 Python Django HTML CSS 
@@ -15,7 +15,6 @@ Python Django HTML CSS
 Rahman CM
 ## License
 
-]]></content>
-  <tabTrigger>readme</tabTrigger>
+</content>
 </snippet>
 
