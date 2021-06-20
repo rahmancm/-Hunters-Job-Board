@@ -5,9 +5,21 @@
 Job Portal (Hunters)
 
 ## Installation
-Python Django HTML CSS 
+Python =3.8 Django=3 HTML=5 CSS=3 
 
 ## Usage
+
+git clone <repository.git>
+
+Install the pip and Virtual environment and activate the Virtual Env. install the Dependencies :
+
+python -m pip install pip 
+python -m pip install django=3.0
+
+
+run the command <code> python manage.py runserver</code>
+
+http://127.0.0.1:8000/
 
 ## History
 
