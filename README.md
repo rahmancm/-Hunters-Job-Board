@@ -9,7 +9,7 @@ Python =3.8 Django=3 HTML=5 CSS=3
 
 ## Usage
 <code>
-git clone <repository.git> </code>
+git clone user/repositories/repo.git </code>
 
 Install the pip and Virtual environment and activate the Virtual Env. install the Dependencies : <br>
 <code>
