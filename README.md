@@ -13,7 +13,8 @@ git clone <repository.git>
 
 Install the pip and Virtual environment and activate the Virtual Env. install the Dependencies :
 <code>
-python -m pip install pip </code> <code>
+python -m pip install pip </code> <br>
+<code>
 python -m pip install django=3.0
 </code>
 
